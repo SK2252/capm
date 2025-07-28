@@ -45,6 +45,16 @@ const config = {
     apiVersion: process.env.AZURE_OPENAI_API_VERSION || '2024-02-15-preview'
   },
 
+  // Google Gemini Configuration
+  gemini: {
+    apiKey: process.env.GEMINI_API_KEY,
+    model: process.env.GEMINI_MODEL || 'gemini-1.5-pro',
+    temperature: parseFloat(process.env.GEMINI_TEMPERATURE) || 0.7,
+    topK: parseInt(process.env.GEMINI_TOP_K) || 40,
+    topP: parseFloat(process.env.GEMINI_TOP_P) || 0.95,
+    maxTokens: parseInt(process.env.GEMINI_MAX_TOKENS) || 2048
+  },
+
   // Vector Database Configuration
   vectorStore: {
     path: process.env.VECTOR_STORE_PATH || './vector_store',
@@ -189,9 +199,9 @@ const config = {
 const validateConfig = () => {
   const errors = [];
 
-  // Validate required OpenAI configuration
-  if (!config.openai.apiKey && !config.azureOpenAI.apiKey) {
-    errors.push('Either OPENAI_API_KEY or AZURE_OPENAI_API_KEY must be provided');
+  // Validate required AI API configuration
+  if (!config.openai.apiKey && !config.azureOpenAI.apiKey && !config.gemini.apiKey) {
+    errors.push('At least one AI API key must be provided (OPENAI_API_KEY, AZURE_OPENAI_API_KEY, or GEMINI_API_KEY)');
   }
 
   // Validate JWT secret in production

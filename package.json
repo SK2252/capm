@@ -27,7 +27,10 @@
     "validate": "npm run lint && npm run test",
     "audit": "npm audit --audit-level moderate",
     "clean": "rm -rf node_modules coverage logs dist",
-    "reset": "npm run clean && npm install && npm run setup"
+    "reset": "npm run clean && npm install && npm run setup",
+    "auto-sync": "node scripts/auto-sync.js",
+    "sync:start": "npm run auto-sync",
+    "sync:stop": "pkill -f auto-sync.js"
   },
   "keywords": [
     "SAP CAP",
@@ -42,8 +45,9 @@
   "license": "MIT",
   "dependencies": {
     "@cap-js-community/odata-v2-adapter": "^1.12.0",
-    "@sap/cds": "^8.0.0",
     "@cap-js/sqlite": "^1.7.3",
+    "@google/generative-ai": "^0.24.1",
+    "@sap/cds": "^8.0.0",
     "@sap/xssec": "^4.0.0",
     "axios": "^1.7.0",
     "bcryptjs": "^2.4.3",
@@ -52,7 +56,7 @@
     "cors": "^2.8.5",
     "csv-parser": "^3.0.0",
     "csv-writer": "^1.6.0",
-    "dotenv": "^16.4.0",
+    "dotenv": "^16.6.1",
     "express": "^4.19.0",
     "helmet": "^7.1.0",
     "joi": "^17.13.0",

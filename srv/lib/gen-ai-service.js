@@ -3,6 +3,7 @@ const axios = require('axios');
 const winston = require('winston');
 const moment = require('moment');
 const { RateLimiterMemory } = require('rate-limiter-flexible');
+const GeminiService = require('./gemini-service');
 
 // Configure logger
 const logger = winston.createLogger({
@@ -19,16 +20,22 @@ const logger = winston.createLogger({
 
 class GenAIService {
   constructor() {
-    this.openai = new OpenAI({
+    this.openai = process.env.OPENAI_API_KEY ? new OpenAI({
       apiKey: process.env.OPENAI_API_KEY
-    });
-    
+    }) : null;
+
     this.azureOpenAI = process.env.AZURE_OPENAI_ENDPOINT ? {
       endpoint: process.env.AZURE_OPENAI_ENDPOINT,
       apiKey: process.env.AZURE_OPENAI_API_KEY,
       deploymentName: process.env.AZURE_OPENAI_DEPLOYMENT_NAME,
       apiVersion: process.env.AZURE_OPENAI_API_VERSION
     } : null;
+
+    // Initialize Gemini service if API key is available
+    this.geminiService = process.env.GEMINI_API_KEY ? new GeminiService() : null;
+
+    // Set preferred AI provider based on available keys
+    this.preferredProvider = this.getPreferredProvider();
 
     // Rate limiting
     this.rateLimiter = new RateLimiterMemory({
@@ -39,6 +46,13 @@ class GenAIService {
 
     this.promptTemplates = this.initializePromptTemplates();
     this.reportTemplates = this.initializeReportTemplates();
+  }
+
+  getPreferredProvider() {
+    if (this.geminiService) return 'gemini';
+    if (this.openai) return 'openai';
+    if (this.azureOpenAI) return 'azure';
+    throw new Error('No AI provider configured. Please set GEMINI_API_KEY, OPENAI_API_KEY, or AZURE_OPENAI_API_KEY');
   }
 
   initializePromptTemplates() {
@@ -242,22 +256,47 @@ class GenAIService {
     };
   }
 
-  async generateInsight(data, analysisType = 'sustainability_analysis') {
+  async generateInsight(data, analysisType = 'sustainability_analysis', provider = null) {
     try {
       await this.rateLimiter.consume('gen-ai-service');
-      
-      const prompt = this.buildPrompt(analysisType, data);
-      const response = await this.callOpenAI(prompt);
-      
-      logger.info(`Generated insight for analysis type: ${analysisType}`);
-      
-      return {
-        insight: response.content,
-        confidence: this.calculateConfidence(response),
-        analysisType,
-        timestamp: new Date().toISOString(),
-        usage: response.usage
-      };
+
+      const selectedProvider = provider || this.preferredProvider;
+
+      let result;
+
+      if (selectedProvider === 'gemini' && this.geminiService) {
+        result = await this.geminiService.generateInsight(data, analysisType);
+      } else if (selectedProvider === 'openai' && this.openai) {
+        const prompt = this.buildPrompt(analysisType, data);
+        const response = await this.callOpenAI(prompt);
+
+        result = {
+          insight: response.content,
+          confidence: this.calculateConfidence(response),
+          analysisType,
+          timestamp: new Date().toISOString(),
+          usage: response.usage,
+          provider: 'openai'
+        };
+      } else if (selectedProvider === 'azure' && this.azureOpenAI) {
+        const prompt = this.buildPrompt(analysisType, data);
+        const response = await this.callAzureOpenAI(prompt);
+
+        result = {
+          insight: response.content,
+          confidence: this.calculateConfidence(response),
+          analysisType,
+          timestamp: new Date().toISOString(),
+          usage: response.usage,
+          provider: 'azure'
+        };
+      } else {
+        throw new Error(`Provider ${selectedProvider} not available or not configured`);
+      }
+
+      logger.info(`Generated insight for analysis type: ${analysisType} using ${selectedProvider}`);
+      return result;
+
     } catch (error) {
       logger.error('Error generating insight:', error);
       throw error;
