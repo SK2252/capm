@@ -1,9 +1,9 @@
 // srv/lib/agentic-rag.js
-const { GoogleGenerativeAI } = require('@google/generative-ai');
 const winston = require('winston');
 const path = require('path');
 const fs = require('fs').promises;
 const crypto = require('crypto');
+const GeminiService = require('./gemini-service');
 
 // Import specialized agents
 const PackagingAnalysisAgent = require('./agents/packaging-agent');
@@ -26,22 +26,12 @@ const logger = winston.createLogger({
 
 class AgenticRAGSystem {
   constructor() {
-    this.genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    this.model = this.genAI.getGenerativeModel({ 
-      model: "gemini-1.5-flash",
-      generationConfig: {
-        temperature: parseFloat(process.env.GEMINI_TEMPERATURE) || 0.7,
-        topK: parseInt(process.env.GEMINI_TOP_K) || 40,
-        topP: parseFloat(process.env.GEMINI_TOP_P) || 0.95,
-        maxOutputTokens: parseInt(process.env.GEMINI_MAX_TOKENS) || 2048,
-      }
-    });
-    
+    this.geminiService = new GeminiService();
     this.vectorStore = new Map(); // Simple in-memory vector store
     this.agents = {};
     this.knowledgeBase = new Map();
     this.documentChunks = [];
-    
+
     this.initializeAgents();
   }
 

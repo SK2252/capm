@@ -32,7 +32,7 @@ This platform helps CCEP achieve their sustainability goals:
 
 ### Prerequisites
 - Node.js 18+ and npm 8+
-- OpenAI API key or Azure OpenAI access
+- Google Gemini API key
 - Git
 
 ### Installation
@@ -149,10 +149,11 @@ The platform features a sophisticated multi-agent RAG system with specialized ag
 
 ## 🧠 Gen AI Integration
 
-### OpenAI Integration
-- **GPT-4 Turbo**: Advanced reasoning and analysis
-- **Text Embeddings**: Semantic search and similarity matching
+### Google Gemini Integration
+- **Gemini 1.5 Pro**: Advanced reasoning and multimodal analysis
+- **High Context Window**: Process large sustainability documents
 - **Custom Prompts**: CCEP-specific sustainability context
+- **Safety Features**: Built-in content filtering and safety controls
 
 ### AI-Powered Features
 - **Natural Language Queries**: Ask questions in plain English

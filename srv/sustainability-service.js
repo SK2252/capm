@@ -5,6 +5,14 @@ const DataProcessor = require('./lib/data-processor');
 const winston = require('winston');
 const moment = require('moment');
 const { v4: uuidv4 } = require('uuid');
+require('dotenv').config();
+
+// Log to verify environment loading (remove in production)
+console.log('Environment check:', {
+  hasGeminiKey: !!process.env.GEMINI_API_KEY,
+  hasOpenAIKey: !!process.env.OPENAI_API_KEY,
+  nodeEnv: process.env.NODE_ENV
+});
 
 // Configure logger
 const logger = winston.createLogger({

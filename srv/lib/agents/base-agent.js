@@ -20,7 +20,7 @@ const logger = winston.createLogger({
 class BaseAgent {
   constructor(ragSystem) {
     this.ragSystem = ragSystem;
-    this.openai = ragSystem.openai;
+    this.geminiService = ragSystem.geminiService;
     this.specialization = 'general';
     this.logger = logger;
   }
@@ -33,25 +33,24 @@ class BaseAgent {
    */
   async processQuery(query, knowledge) {
     const prompt = this.buildPrompt(query, knowledge.context);
-    
+
     try {
-      const response = await this.openai.chat.completions.create({
-        model: process.env.OPENAI_MODEL || 'gpt-4-turbo-preview',
-        messages: [
-          { role: 'system', content: this.getSystemPrompt() },
-          { role: 'user', content: prompt }
-        ],
-        max_tokens: parseInt(process.env.OPENAI_MAX_TOKENS) || 4000,
-        temperature: parseFloat(process.env.OPENAI_TEMPERATURE) || 0.7
+      if (!this.geminiService) {
+        throw new Error('Gemini service not available');
+      }
+
+      const response = await this.geminiService.processNaturalLanguageQuery(prompt, {
+        systemPrompt: this.getSystemPrompt(),
+        sources: knowledge.sources || []
       });
 
       this.logger.info(`${this.specialization} agent processed query successfully`);
 
       return {
-        answer: response.choices[0].message.content,
+        answer: response.answer,
         confidence: knowledge.confidence,
-        usage: response.usage,
-        agent: this.specialization
+        agent: this.specialization,
+        model: response.model
       };
     } catch (error) {
       this.logger.error(`Error in ${this.specialization} agent:`, error);

@@ -28,23 +28,6 @@ const config = {
     seedDataOnStart: process.env.SEED_DATA_ON_START === 'true'
   },
 
-  // OpenAI Configuration
-  openai: {
-    apiKey: process.env.OPENAI_API_KEY,
-    model: process.env.OPENAI_MODEL || 'gpt-4-turbo-preview',
-    maxTokens: parseInt(process.env.OPENAI_MAX_TOKENS) || 4000,
-    temperature: parseFloat(process.env.OPENAI_TEMPERATURE) || 0.7,
-    embeddingModel: process.env.EMBEDDING_MODEL || 'text-embedding-ada-002'
-  },
-
-  // Azure OpenAI Configuration
-  azureOpenAI: {
-    endpoint: process.env.AZURE_OPENAI_ENDPOINT,
-    apiKey: process.env.AZURE_OPENAI_API_KEY,
-    deploymentName: process.env.AZURE_OPENAI_DEPLOYMENT_NAME,
-    apiVersion: process.env.AZURE_OPENAI_API_VERSION || '2024-02-15-preview'
-  },
-
   // Google Gemini Configuration
   gemini: {
     apiKey: process.env.GEMINI_API_KEY,
@@ -199,9 +182,9 @@ const config = {
 const validateConfig = () => {
   const errors = [];
 
-  // Validate required AI API configuration
-  if (!config.openai.apiKey && !config.azureOpenAI.apiKey && !config.gemini.apiKey) {
-    errors.push('At least one AI API key must be provided (OPENAI_API_KEY, AZURE_OPENAI_API_KEY, or GEMINI_API_KEY)');
+  // Validate required Gemini API configuration
+  if (!config.gemini.apiKey) {
+    errors.push('GEMINI_API_KEY must be provided');
   }
 
   // Validate JWT secret in production
