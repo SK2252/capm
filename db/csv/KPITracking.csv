@@ -1,0 +1,41 @@
+ID,kpiName,category,currentValue,targetValue,unit,period,region,trend,achievementPercentage,lastUpdated,createdAt,modifiedAt
+1,GHG Emission Reduction,Climate,18.5,30.0,%,2024-Q3,Europe,Improving,61.7,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+2,GHG Emission Reduction,Climate,14.8,30.0,%,2024-Q3,Asia Pacific,Improving,49.3,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+3,GHG Emission Reduction,Climate,16.9,30.0,%,2024-Q3,Global,Improving,56.3,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+4,Recyclable Packaging,Packaging,89.2,100.0,%,2024-Q3,Europe,Improving,89.2,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+5,Recyclable Packaging,Packaging,85.7,100.0,%,2024-Q3,Asia Pacific,Improving,85.7,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+6,Recyclable Packaging,Packaging,87.3,100.0,%,2024-Q3,Global,Improving,87.3,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+7,Recycled Content PET,Packaging,48.5,50.0,%,2024-Q3,Europe,Improving,97.0,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+8,Recycled Content PET,Packaging,26.9,50.0,%,2024-Q3,Asia Pacific,Improving,53.8,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+9,Recycled Content PET,Packaging,42.1,50.0,%,2024-Q3,Global,Improving,84.2,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+10,Collection Rate,Packaging,76.7,85.0,%,2024-Q3,Europe,Improving,90.2,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+11,Collection Rate,Packaging,53.0,70.0,%,2024-Q3,Asia Pacific,Improving,75.7,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+12,Collection Rate,Packaging,67.2,78.0,%,2024-Q3,Global,Improving,86.2,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+13,Water Use Efficiency,Operations,15.2,20.0,%,2024-Q3,Europe,Improving,76.0,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+14,Water Use Efficiency,Operations,12.8,20.0,%,2024-Q3,Asia Pacific,Improving,64.0,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+15,Water Use Efficiency,Operations,14.3,20.0,%,2024-Q3,Global,Improving,71.5,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+16,Renewable Energy,Operations,78.5,100.0,%,2024-Q3,Europe,Improving,78.5,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+17,Renewable Energy,Operations,45.2,100.0,%,2024-Q3,Asia Pacific,Improving,45.2,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+18,Renewable Energy,Operations,65.8,100.0,%,2024-Q3,Global,Improving,65.8,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+19,Sustainable Sourcing,Supply Chain,82.4,100.0,%,2024-Q3,Europe,Improving,82.4,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+20,Sustainable Sourcing,Supply Chain,67.9,100.0,%,2024-Q3,Asia Pacific,Improving,67.9,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+21,Sustainable Sourcing,Supply Chain,76.8,100.0,%,2024-Q3,Global,Improving,76.8,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+22,Zero Waste to Landfill,Operations,92.3,100.0,%,2024-Q3,Europe,Improving,92.3,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+23,Zero Waste to Landfill,Operations,78.6,100.0,%,2024-Q3,Asia Pacific,Improving,78.6,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+24,Zero Waste to Landfill,Operations,87.1,100.0,%,2024-Q3,Global,Improving,87.1,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+25,Supplier Sustainability Score,Supply Chain,8.2,9.0,Score,2024-Q3,Europe,Improving,91.1,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+26,Supplier Sustainability Score,Supply Chain,7.8,9.0,Score,2024-Q3,Asia Pacific,Improving,86.7,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+27,Supplier Sustainability Score,Supply Chain,8.0,9.0,Score,2024-Q3,Global,Improving,88.9,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+28,Carbon Intensity,Operations,0.145,0.120,kg CO2e/L,2024-Q3,Europe,Improving,82.8,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+29,Carbon Intensity,Operations,0.168,0.120,kg CO2e/L,2024-Q3,Asia Pacific,Improving,71.4,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+30,Carbon Intensity,Operations,0.154,0.120,kg CO2e/L,2024-Q3,Global,Improving,77.9,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+31,Packaging Weight Reduction,Packaging,12.8,15.0,%,2024-Q3,Europe,Improving,85.3,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+32,Packaging Weight Reduction,Packaging,9.4,15.0,%,2024-Q3,Asia Pacific,Improving,62.7,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+33,Packaging Weight Reduction,Packaging,11.5,15.0,%,2024-Q3,Global,Improving,76.7,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+34,Employee Engagement,Social,78.5,85.0,%,2024-Q3,Europe,Stable,92.4,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+35,Employee Engagement,Social,72.3,85.0,%,2024-Q3,Asia Pacific,Improving,85.1,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+36,Employee Engagement,Social,76.1,85.0,%,2024-Q3,Global,Improving,89.5,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+37,Community Investment,Social,2.8,3.0,Million EUR,2024-Q3,Europe,Improving,93.3,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+38,Community Investment,Social,1.9,2.5,Million USD,2024-Q3,Asia Pacific,Improving,76.0,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+39,Community Investment,Social,4.7,5.5,Million USD,2024-Q3,Global,Improving,85.5,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z
+40,Regulatory Compliance,Governance,94.2,100.0,%,2024-Q3,Europe,Stable,94.2,2024-10-15T10:30:00Z,2024-01-15T08:00:00Z,2024-10-15T10:30:00Z

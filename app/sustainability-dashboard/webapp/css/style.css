@@ -1,0 +1,457 @@
+/* CCEP Sustainability Dashboard Styles */
+
+/* Global Styles */
+.sapUiBody {
+    font-family: "72", "72full", Arial, Helvetica, sans-serif;
+    background-color: #f7f7f7;
+}
+
+/* Dashboard Layout */
+.tileLayout {
+    min-height: 200px;
+    max-width: 300px;
+}
+
+.kpiGrid {
+    padding: 1rem;
+}
+
+/* KPI Cards */
+.sapMGT .sapMGTHdrTxt {
+    font-weight: 600;
+    color: #0a6ed1;
+}
+
+.sapMGT .sapMGTSubHdrTxt {
+    color: #6a6d70;
+    font-size: 0.875rem;
+}
+
+/* Chart Containers */
+.chartContainer {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin: 0.5rem;
+}
+
+/* AI Chat Styles */
+.chatScrollContainer {
+    background-color: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+.chatMessagesContainer {
+    padding: 1rem;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.chatMessage {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-radius: 12px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.userMessage {
+    background-color: #0a6ed1;
+    color: white;
+    margin-left: auto;
+    border-bottom-right-radius: 4px;
+}
+
+.aiMessage {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    margin-right: auto;
+    border-bottom-left-radius: 4px;
+}
+
+.messageHeader {
+    margin-bottom: 0.5rem;
+}
+
+.messageSender {
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.messageTime {
+    font-size: 0.75rem;
+    opacity: 0.7;
+}
+
+.messageText {
+    line-height: 1.4;
+}
+
+.confidenceIndicator {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.confidenceValue {
+    font-weight: 600;
+    color: #0a6ed1;
+}
+
+.typingIndicator {
+    padding: 0.75rem;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    max-width: 200px;
+}
+
+/* Message Input Area */
+.messageInputArea {
+    background-color: white;
+    border-top: 1px solid #e0e0e0;
+    padding: 1rem;
+}
+
+.messageTextArea {
+    border-radius: 20px;
+    border: 1px solid #d0d0d0;
+    resize: none;
+}
+
+.messageTextArea:focus {
+    border-color: #0a6ed1;
+    box-shadow: 0 0 0 2px rgba(10, 110, 209, 0.2);
+}
+
+.sendButton {
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+}
+
+.characterCounter {
+    text-align: right;
+    color: #6a6d70;
+}
+
+.inputHints {
+    color: #6a6d70;
+    font-size: 0.75rem;
+}
+
+/* Suggested Questions */
+.suggestedQuestionsPanel .sapMPanelContent {
+    padding: 0.5rem;
+}
+
+.suggestedQuestions {
+    gap: 0.5rem;
+}
+
+.suggestedQuestionButton {
+    border-radius: 16px;
+    background-color: #f0f0f0;
+    border: 1px solid #d0d0d0;
+    font-size: 0.875rem;
+}
+
+.suggestedQuestionButton:hover {
+    background-color: #e6f2ff;
+    border-color: #0a6ed1;
+}
+
+/* Quick Actions */
+.quickActionsPanel .sapMPanelContent {
+    padding: 0.5rem;
+}
+
+.quickActionButton {
+    border-radius: 8px;
+    min-width: 120px;
+}
+
+/* Analytics Styles */
+.analyticsContainer {
+    padding: 1rem;
+}
+
+.kpiCard {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin: 0.5rem;
+    text-align: center;
+}
+
+.kpiValue {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0a6ed1;
+    margin: 0.5rem 0;
+}
+
+.kpiLabel {
+    font-size: 0.875rem;
+    color: #6a6d70;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.kpiTrend {
+    margin-top: 0.5rem;
+}
+
+.trendImproving {
+    color: #107e3e;
+}
+
+.trendStable {
+    color: #e9730c;
+}
+
+.trendDeclining {
+    color: #b00;
+}
+
+/* Insight Cards */
+.insightCard {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-left: 4px solid #0a6ed1;
+}
+
+.insightTitle {
+    font-weight: 600;
+    color: #0a6ed1;
+    margin-bottom: 0.5rem;
+}
+
+.insightDescription {
+    line-height: 1.4;
+    color: #32363a;
+}
+
+.insightMeta {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #e0e0e0;
+    font-size: 0.875rem;
+    color: #6a6d70;
+}
+
+.priorityHigh {
+    border-left-color: #b00;
+}
+
+.priorityMedium {
+    border-left-color: #e9730c;
+}
+
+.priorityLow {
+    border-left-color: #107e3e;
+}
+
+/* Scenario Analysis */
+.scenarioCard {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin: 0.5rem;
+}
+
+.scenarioName {
+    font-weight: 600;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+}
+
+.scenarioOptimistic .scenarioName {
+    color: #107e3e;
+}
+
+.scenarioRealistic .scenarioName {
+    color: #0a6ed1;
+}
+
+.scenarioPessimistic .scenarioName {
+    color: #e9730c;
+}
+
+.scenarioOutcomes {
+    margin-top: 1rem;
+}
+
+.outcomeItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.25rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.outcomeLabel {
+    font-weight: 500;
+}
+
+.outcomeValue {
+    font-weight: 600;
+    color: #0a6ed1;
+}
+
+/* Correlation Matrix */
+.correlationMatrix {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+}
+
+.correlationItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.correlationStrong {
+    background-color: #e6f7e6;
+}
+
+.correlationMedium {
+    background-color: #fff3e0;
+}
+
+.correlationWeak {
+    background-color: #ffebee;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tileLayout {
+        max-width: 100%;
+        margin: 0.25rem;
+    }
+    
+    .chatMessage {
+        max-width: 95%;
+    }
+    
+    .kpiCard {
+        margin: 0.25rem;
+        padding: 1rem;
+    }
+    
+    .kpiValue {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .messageInputArea {
+        padding: 0.5rem;
+    }
+    
+    .sendButton {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+    }
+    
+    .kpiValue {
+        font-size: 1.75rem;
+    }
+}
+
+/* Loading States */
+.loadingOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Animation Classes */
+.fadeIn {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.slideUp {
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Accessibility Improvements */
+.sapMBtn:focus,
+.sapMInput:focus,
+.sapMTextArea:focus {
+    outline: 2px solid #0a6ed1;
+    outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .chatMessage {
+        border: 2px solid;
+    }
+    
+    .userMessage {
+        border-color: white;
+    }
+    
+    .aiMessage {
+        border-color: #000;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .sapUiBody {
+        background-color: #1d1d1d;
+        color: #e0e0e0;
+    }
+    
+    .chartContainer,
+    .kpiCard,
+    .insightCard,
+    .scenarioCard,
+    .correlationMatrix {
+        background-color: #2d2d2d;
+        color: #e0e0e0;
+    }
+    
+    .aiMessage {
+        background-color: #2d2d2d;
+        border-color: #404040;
+        color: #e0e0e0;
+    }
+    
+    .messageInputArea {
+        background-color: #2d2d2d;
+        border-color: #404040;
+    }
+}

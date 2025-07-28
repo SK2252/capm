@@ -1,0 +1,346 @@
+<mvc:View
+    controllerName="ccep.sustainability.dashboard.controller.Dashboard"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:suite="sap.suite.ui.commons"
+    xmlns:micro="sap.suite.ui.microchart"
+    xmlns:viz="sap.viz"
+    xmlns:core="sap.ui.core">
+
+    <Page id="dashboardPage" title="Sustainability Dashboard" showNavButton="false">
+        <content>
+            <!-- Header KPI Cards -->
+            <f:GridContainer id="kpiGrid" class="sapUiMediumMargin">
+                
+                <!-- GHG Reduction KPI -->
+                <f:GridContainerItemLayoutData minRows="2" columns="3"/>
+                <GenericTile 
+                    class="sapUiTinyMargin tileLayout"
+                    header="GHG Emission Reduction"
+                    subheader="Progress to 30% Target"
+                    press="onKPIPress"
+                    data-kpi="ghgReduction">
+                    <tileContent>
+                        <TileContent>
+                            <content>
+                                <micro:RadialMicroChart 
+                                    id="ghgChart"
+                                    size="M"
+                                    percentage="{/dashboard/overview/ghgReduction/progress}"
+                                    valueColor="{path: '/dashboard/overview/ghgReduction/onTrack', formatter: '.formatStatusColor'}">
+                                </micro:RadialMicroChart>
+                            </content>
+                            <footer>
+                                <Text text="{path: '/dashboard/overview/ghgReduction/reduction', formatter: '.formatPercentage'}"/>
+                            </footer>
+                        </TileContent>
+                    </tileContent>
+                </GenericTile>
+
+                <!-- Recyclable Packaging KPI -->
+                <GenericTile 
+                    class="sapUiTinyMargin tileLayout"
+                    header="Recyclable Packaging"
+                    subheader="Current Performance"
+                    press="onKPIPress"
+                    data-kpi="recyclablePackaging">
+                    <tileContent>
+                        <TileContent>
+                            <content>
+                                <micro:RadialMicroChart 
+                                    id="recyclableChart"
+                                    size="M"
+                                    percentage="{/dashboard/overview/recyclablePackaging/recyclabilityRate}"
+                                    valueColor="Good">
+                                </micro:RadialMicroChart>
+                            </content>
+                            <footer>
+                                <Text text="{path: '/dashboard/overview/recyclablePackaging/recyclabilityRate', formatter: '.formatPercentage'}"/>
+                            </footer>
+                        </TileContent>
+                    </tileContent>
+                </GenericTile>
+
+                <!-- Recycled Content KPI -->
+                <GenericTile 
+                    class="sapUiTinyMargin tileLayout"
+                    header="Recycled Content (PET)"
+                    subheader="Progress to 50% Target"
+                    press="onKPIPress"
+                    data-kpi="recycledContent">
+                    <tileContent>
+                        <TileContent>
+                            <content>
+                                <micro:RadialMicroChart 
+                                    id="recycledContentChart"
+                                    size="M"
+                                    percentage="{/dashboard/overview/recycledContent/progress}"
+                                    valueColor="{path: '/dashboard/overview/recycledContent/onTrack', formatter: '.formatStatusColor'}">
+                                </micro:RadialMicroChart>
+                            </content>
+                            <footer>
+                                <Text text="{path: '/dashboard/overview/recycledContent/currentRate', formatter: '.formatPercentage'}"/>
+                            </footer>
+                        </TileContent>
+                    </tileContent>
+                </GenericTile>
+
+                <!-- Collection Rate Europe -->
+                <GenericTile 
+                    class="sapUiTinyMargin tileLayout"
+                    header="Collection Rate"
+                    subheader="Europe"
+                    press="onKPIPress"
+                    data-kpi="collectionRateEurope">
+                    <tileContent>
+                        <TileContent>
+                            <content>
+                                <micro:BulletMicroChart 
+                                    id="collectionEuropeChart"
+                                    size="M"
+                                    actual="{/dashboard/overview/collectionRates/europe/current}"
+                                    target="{/dashboard/overview/collectionRates/europe/target}"
+                                    maxValue="100"
+                                    actualValueLabel="{path: '/dashboard/overview/collectionRates/europe/current', formatter: '.formatPercentage'}"
+                                    targetValueLabel="{path: '/dashboard/overview/collectionRates/europe/target', formatter: '.formatPercentage'}">
+                                </micro:BulletMicroChart>
+                            </content>
+                        </TileContent>
+                    </tileContent>
+                </GenericTile>
+
+                <!-- Collection Rate Asia Pacific -->
+                <GenericTile 
+                    class="sapUiTinyMargin tileLayout"
+                    header="Collection Rate"
+                    subheader="Asia Pacific"
+                    press="onKPIPress"
+                    data-kpi="collectionRateAPI">
+                    <tileContent>
+                        <TileContent>
+                            <content>
+                                <micro:BulletMicroChart 
+                                    id="collectionAPIChart"
+                                    size="M"
+                                    actual="{/dashboard/overview/collectionRates/asiaPacific/current}"
+                                    target="{/dashboard/overview/collectionRates/asiaPacific/target}"
+                                    maxValue="100"
+                                    actualValueLabel="{path: '/dashboard/overview/collectionRates/asiaPacific/current', formatter: '.formatPercentage'}"
+                                    targetValueLabel="{path: '/dashboard/overview/collectionRates/asiaPacific/target', formatter: '.formatPercentage'}">
+                                </micro:BulletMicroChart>
+                            </content>
+                        </TileContent>
+                    </tileContent>
+                </GenericTile>
+
+                <!-- AI Insights Card -->
+                <GenericTile 
+                    class="sapUiTinyMargin tileLayout"
+                    header="AI Insights"
+                    subheader="Latest Recommendations"
+                    press="onAIInsightsPress">
+                    <tileContent>
+                        <TileContent>
+                            <content>
+                                <VBox class="sapUiSmallMargin">
+                                    <Text 
+                                        text="{/aiInsights/latest/insight}"
+                                        maxLines="3"
+                                        class="sapUiSmallMarginBottom"/>
+                                    <Text 
+                                        text="Confidence: {path: '/aiInsights/latest/confidence', formatter: '.formatPercentage'}"
+                                        class="sapUiSmallText"/>
+                                </VBox>
+                            </content>
+                        </TileContent>
+                    </tileContent>
+                </GenericTile>
+            </f:GridContainer>
+
+            <!-- Charts Section -->
+            <Panel headerText="Performance Trends" class="sapUiMediumMargin" expandable="true" expanded="true">
+                <content>
+                    <f:GridContainer>
+                        <!-- Emission Trends Chart -->
+                        <f:GridContainerItemLayoutData minRows="4" columns="6"/>
+                        <VBox class="sapUiMediumMargin">
+                            <Title text="Emission Reduction Trends" level="H3" class="sapUiSmallMarginBottom"/>
+                            <viz:Popover id="emissionTrendPopover"></viz:Popover>
+                            <viz:VizFrame 
+                                id="emissionTrendChart"
+                                vizType="line"
+                                width="100%"
+                                height="300px">
+                                <viz:dataset>
+                                    <viz:FlattenedDataset data="{/charts/emissionTrends}">
+                                        <viz:dimensions>
+                                            <viz:DimensionDefinition name="Period" value="{period}"/>
+                                        </viz:dimensions>
+                                        <viz:measures>
+                                            <viz:MeasureDefinition name="Emissions" value="{value}"/>
+                                            <viz:MeasureDefinition name="Target" value="{target}"/>
+                                        </viz:measures>
+                                    </viz:FlattenedDataset>
+                                </viz:dataset>
+                            </viz:VizFrame>
+                        </VBox>
+
+                        <!-- Regional Performance Chart -->
+                        <f:GridContainerItemLayoutData minRows="4" columns="6"/>
+                        <VBox class="sapUiMediumMargin">
+                            <Title text="Regional Performance Comparison" level="H3" class="sapUiSmallMarginBottom"/>
+                            <viz:Popover id="regionalPopover"></viz:Popover>
+                            <viz:VizFrame 
+                                id="regionalChart"
+                                vizType="column"
+                                width="100%"
+                                height="300px">
+                                <viz:dataset>
+                                    <viz:FlattenedDataset data="{/charts/regionalPerformance}">
+                                        <viz:dimensions>
+                                            <viz:DimensionDefinition name="Region" value="{region}"/>
+                                            <viz:DimensionDefinition name="Metric" value="{metric}"/>
+                                        </viz:dimensions>
+                                        <viz:measures>
+                                            <viz:MeasureDefinition name="Value" value="{value}"/>
+                                        </viz:measures>
+                                    </viz:FlattenedDataset>
+                                </viz:dataset>
+                            </viz:VizFrame>
+                        </VBox>
+                    </f:GridContainer>
+                </content>
+            </Panel>
+
+            <!-- Alerts and Notifications -->
+            <Panel headerText="Alerts &amp; Notifications" class="sapUiMediumMargin" expandable="true" expanded="true">
+                <content>
+                    <List id="alertsList" items="{/dashboard/alerts}" noDataText="No alerts at this time">
+                        <StandardListItem 
+                            title="{message}"
+                            description="Target: {target} | Current: {value}"
+                            icon="{path: 'type', formatter: '.formatAlertIcon'}"
+                            iconInset="false"
+                            type="Active"
+                            press="onAlertPress"
+                            highlight="{path: 'type', formatter: '.formatAlertHighlight'}"/>
+                    </List>
+                </content>
+            </Panel>
+
+            <!-- Quick Actions -->
+            <Panel headerText="Quick Actions" class="sapUiMediumMargin" expandable="true" expanded="true">
+                <content>
+                    <f:GridContainer>
+                        <Button 
+                            text="Generate Report"
+                            icon="sap-icon://document"
+                            press="onGenerateReport"
+                            type="Emphasized"
+                            class="sapUiTinyMargin"/>
+                        <Button 
+                            text="AI Analysis"
+                            icon="sap-icon://robot"
+                            press="onAIAnalysis"
+                            type="Default"
+                            class="sapUiTinyMargin"/>
+                        <Button 
+                            text="Export Data"
+                            icon="sap-icon://download"
+                            press="onExportData"
+                            type="Default"
+                            class="sapUiTinyMargin"/>
+                        <Button 
+                            text="Schedule Meeting"
+                            icon="sap-icon://appointment-2"
+                            press="onScheduleMeeting"
+                            type="Default"
+                            class="sapUiTinyMargin"/>
+                        <Button 
+                            text="View Trends"
+                            icon="sap-icon://trend-up"
+                            press="onViewTrends"
+                            type="Default"
+                            class="sapUiTinyMargin"/>
+                        <Button 
+                            text="Settings"
+                            icon="sap-icon://action-settings"
+                            press="onDashboardSettings"
+                            type="Default"
+                            class="sapUiTinyMargin"/>
+                    </f:GridContainer>
+                </content>
+            </Panel>
+
+            <!-- Recent Activity -->
+            <Panel headerText="Recent Activity" class="sapUiMediumMargin" expandable="true" expanded="false">
+                <content>
+                    <Timeline id="activityTimeline" items="{/recentActivity}">
+                        <TimelineItem 
+                            title="{title}"
+                            text="{description}"
+                            dateTime="{timestamp}"
+                            icon="{icon}"
+                            userNameClickable="false"/>
+                    </Timeline>
+                </content>
+            </Panel>
+
+        </content>
+
+        <!-- Floating Action Button for AI Chat -->
+        <footer>
+            <Toolbar>
+                <ToolbarSpacer/>
+                <Button 
+                    id="aiChatFAB"
+                    icon="sap-icon://discussion-2"
+                    text="Ask AI"
+                    press="onOpenAIChat"
+                    type="Emphasized"
+                    class="sapUiMediumMarginEnd"/>
+            </Toolbar>
+        </footer>
+    </Page>
+
+    <!-- Report Generation Dialog -->
+    <Dialog id="reportDialog" title="Generate Report" contentWidth="500px">
+        <content>
+            <VBox class="sapUiMediumMargin">
+                <Label text="Report Type:" class="sapUiSmallMarginBottom"/>
+                <Select id="reportTypeSelect">
+                    <core:Item key="executive_summary" text="Executive Summary"/>
+                    <core:Item key="detailed_analysis" text="Detailed Analysis"/>
+                    <core:Item key="quarterly_review" text="Quarterly Review"/>
+                    <core:Item key="compliance_report" text="Compliance Report"/>
+                </Select>
+                
+                <Label text="Period:" class="sapUiMediumMarginTop sapUiSmallMarginBottom"/>
+                <Select id="reportPeriodSelect">
+                    <core:Item key="current_quarter" text="Current Quarter"/>
+                    <core:Item key="last_quarter" text="Last Quarter"/>
+                    <core:Item key="ytd" text="Year to Date"/>
+                    <core:Item key="custom" text="Custom Range"/>
+                </Select>
+                
+                <Label text="Region:" class="sapUiMediumMarginTop sapUiSmallMarginBottom"/>
+                <Select id="reportRegionSelect">
+                    <core:Item key="Global" text="Global"/>
+                    <core:Item key="Europe" text="Europe"/>
+                    <core:Item key="Asia Pacific" text="Asia Pacific"/>
+                </Select>
+                
+                <CheckBox 
+                    text="Include AI Insights" 
+                    selected="true"
+                    class="sapUiMediumMarginTop"/>
+            </VBox>
+        </content>
+        <buttons>
+            <Button text="Generate" press="onConfirmGenerateReport" type="Emphasized"/>
+            <Button text="Cancel" press="onCancelGenerateReport"/>
+        </buttons>
+    </Dialog>
+
+</mvc:View>

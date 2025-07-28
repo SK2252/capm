@@ -1,0 +1,116 @@
+_schema-version: "3.1"
+ID: ccep-sustainability-capm
+description: CCEP Sustainability Analytics with SAP CAP, Agentic RAG, and Gen AI
+version: 1.0.0
+author: CCEP Sustainability Team
+
+modules:
+  - name: ccep-sustainability-srv
+    type: nodejs
+    path: gen/srv
+    requires:
+      - name: ccep-sustainability-db
+      - name: ccep-sustainability-auth
+      - name: ccep-sustainability-logging
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+    parameters:
+      buildpack: nodejs_buildpack
+      readiness-health-check-http-endpoint: /health
+      readiness-health-check-type: http
+    build-parameters:
+      builder: npm-ci
+    properties:
+      OPENAI_API_KEY: ~{openai-service/api-key}
+      AZURE_OPENAI_ENDPOINT: ~{azure-openai-service/endpoint}
+      AZURE_OPENAI_API_KEY: ~{azure-openai-service/api-key}
+
+  - name: ccep-sustainability-db-deployer
+    type: hdb
+    path: gen/db
+    requires:
+      - name: ccep-sustainability-db
+    parameters:
+      buildpack: nodejs_buildpack
+
+  - name: ccep-sustainability-app-content
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: ccep-sustainability-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - artifacts:
+            - sustainabilitydashboard.zip
+          name: sustainabilitydashboard
+          target-path: resources/
+
+  - name: sustainabilitydashboard
+    type: html5
+    path: app/sustainability-dashboard
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms: []
+
+resources:
+  - name: ccep-sustainability-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+    properties:
+      hdi-service-name: ${service-name}
+
+  - name: ccep-sustainability-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: ccep-sustainability-${org}-${space}
+        tenant-mode: dedicated
+
+  - name: ccep-sustainability-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+
+  - name: ccep-sustainability-logging
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: application-logs
+      service-plan: lite
+
+  - name: openai-service
+    type: org.cloudfoundry.user-provided-service
+    parameters:
+      service-name: openai-service
+      config:
+        api-key: "${OPENAI_API_KEY}"
+
+  - name: azure-openai-service
+    type: org.cloudfoundry.user-provided-service
+    parameters:
+      service-name: azure-openai-service
+      config:
+        endpoint: "${AZURE_OPENAI_ENDPOINT}"
+        api-key: "${AZURE_OPENAI_API_KEY}"
+
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npx cds build --production

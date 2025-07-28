@@ -1,0 +1,26 @@
+ID,source,category,value,unit,period,region,target,baseline,reductionPercentage,methodology,verified,scope,createdAt,modifiedAt
+1,Packaging,PET Bottles,2850.5,tCO2e,2024-Q1,Europe,2565.45,3550.0,19.7,LCA ISO 14040,true,Scope3,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+2,Packaging,PET Bottles,4125.8,tCO2e,2024-Q1,Asia Pacific,3713.22,5150.0,19.9,LCA ISO 14040,true,Scope3,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+3,Packaging,Aluminum Cans,1875.2,tCO2e,2024-Q1,Europe,1687.68,2340.0,19.9,LCA ISO 14040,true,Scope3,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+4,Packaging,Aluminum Cans,2234.7,tCO2e,2024-Q1,Asia Pacific,2011.23,2790.0,19.9,LCA ISO 14040,true,Scope3,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+5,Packaging,Glass Bottles,3456.9,tCO2e,2024-Q1,Europe,3111.21,4320.0,20.0,LCA ISO 14040,true,Scope3,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+6,Packaging,Glass Bottles,2789.3,tCO2e,2024-Q1,Asia Pacific,2510.37,3485.0,20.0,LCA ISO 14040,true,Scope3,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+7,Operations,Manufacturing,5678.4,tCO2e,2024-Q1,Europe,5110.56,7098.0,20.0,GHG Protocol,true,Scope1,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+8,Operations,Manufacturing,7234.1,tCO2e,2024-Q1,Asia Pacific,6510.69,9043.0,20.0,GHG Protocol,true,Scope1,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+9,Transportation,Distribution,3245.7,tCO2e,2024-Q1,Europe,2921.13,4057.0,20.0,GLEC Framework,true,Scope3,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+10,Transportation,Distribution,4567.2,tCO2e,2024-Q1,Asia Pacific,4110.48,5709.0,20.0,GLEC Framework,true,Scope3,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+11,Refrigeration,Cold Chain,2134.8,tCO2e,2024-Q1,Europe,1921.32,2668.5,20.0,IPCC Guidelines,true,Scope2,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+12,Refrigeration,Cold Chain,2876.5,tCO2e,2024-Q1,Asia Pacific,2588.85,3595.6,20.0,IPCC Guidelines,true,Scope2,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+13,SupplyChain,Raw Materials,4321.6,tCO2e,2024-Q1,Europe,3889.44,5402.0,20.0,Supplier Data,false,Scope3,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+14,SupplyChain,Raw Materials,5789.3,tCO2e,2024-Q1,Asia Pacific,5210.37,7236.6,20.0,Supplier Data,false,Scope3,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+15,Packaging,Secondary Packaging,987.4,tCO2e,2024-Q1,Europe,888.66,1234.3,20.0,LCA ISO 14040,true,Scope3,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+16,Packaging,Secondary Packaging,1234.7,tCO2e,2024-Q1,Asia Pacific,1111.23,1543.4,20.0,LCA ISO 14040,true,Scope3,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+17,Operations,Energy Consumption,6789.2,tCO2e,2024-Q1,Europe,6110.28,8486.5,20.0,Market-based,true,Scope2,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+18,Operations,Energy Consumption,8456.7,tCO2e,2024-Q1,Asia Pacific,7611.03,10570.9,20.0,Market-based,true,Scope2,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+19,Transportation,Logistics,2345.8,tCO2e,2024-Q1,Europe,2111.22,2932.3,20.0,GLEC Framework,true,Scope3,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+20,Transportation,Logistics,3456.9,tCO2e,2024-Q1,Asia Pacific,3111.21,4321.1,20.0,GLEC Framework,true,Scope3,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+21,Packaging,Labels,456.3,tCO2e,2024-Q1,Europe,410.67,570.4,20.0,LCA ISO 14040,true,Scope3,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+22,Packaging,Labels,567.8,tCO2e,2024-Q1,Asia Pacific,511.02,709.8,20.0,LCA ISO 14040,true,Scope3,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+23,Operations,Water Treatment,789.4,tCO2e,2024-Q1,Europe,710.46,986.8,20.0,Water Footprint,true,Scope1,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+24,Operations,Water Treatment,1023.7,tCO2e,2024-Q1,Asia Pacific,921.33,1279.6,20.0,Water Footprint,true,Scope1,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+25,SupplyChain,Supplier Transport,1567.2,tCO2e,2024-Q1,Europe,1410.48,1959.0,20.0,Supplier Data,false,Scope3,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z

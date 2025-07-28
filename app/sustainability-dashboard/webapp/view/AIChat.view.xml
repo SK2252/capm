@@ -1,0 +1,239 @@
+<mvc:View
+    controllerName="ccep.sustainability.dashboard.controller.AIChat"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core">
+
+    <Page id="aiChatPage" title="AI Sustainability Assistant" showNavButton="true" navButtonPress="onNavBack">
+        
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <Button icon="sap-icon://nav-back" press="onNavBack"/>
+                    <Title text="AI Sustainability Assistant" level="H1"/>
+                </contentLeft>
+                <contentRight>
+                    <Button 
+                        icon="sap-icon://microphone" 
+                        press="onStartVoiceInput"
+                        visible="{chat>/chatSettings/enableVoice}"
+                        tooltip="Voice Input"/>
+                    <ToggleButton 
+                        icon="sap-icon://microphone"
+                        pressed="{chat>/chatSettings/enableVoice}"
+                        press="onVoiceToggle"
+                        tooltip="Toggle Voice Recognition"/>
+                    <Button icon="sap-icon://download" press="onExportChat" tooltip="Export Chat"/>
+                    <Button icon="sap-icon://delete" press="onClearChat" tooltip="Clear Chat"/>
+                </contentRight>
+            </Bar>
+        </customHeader>
+
+        <content>
+            <VBox class="sapUiNoMargin" height="100%">
+                
+                <!-- Chat Messages Container -->
+                <ScrollContainer 
+                    id="chatContainer"
+                    height="100%"
+                    vertical="true"
+                    horizontal="false"
+                    class="chatScrollContainer">
+                    
+                    <VBox class="sapUiMediumMargin">
+                        <!-- Messages List -->
+                        <VBox items="{chat>/messages}" class="chatMessagesContainer">
+                            <VBox class="{path: 'chat>isUser', formatter: '.formatMessageClass'} chatMessage">
+                                <HBox justifyContent="{path: 'chat>isUser', formatter: function(isUser) { return isUser ? 'End' : 'Start'; }}" class="messageHeader">
+                                    <Text 
+                                        text="{path: 'chat>isUser', formatter: function(isUser) { return isUser ? 'You' : 'AI Assistant'; }}"
+                                        class="messageSender"/>
+                                    <Text 
+                                        text="{path: 'chat>timestamp', formatter: '.formatMessageTime'}"
+                                        class="messageTime sapUiTinyMarginBegin"
+                                        visible="{chat>/chatSettings/showTimestamps}"/>
+                                </HBox>
+                                
+                                <VBox class="messageContent">
+                                    <FormattedText 
+                                        htmlText="{chat>text}"
+                                        class="messageText"/>
+                                    
+                                    <!-- Confidence indicator for AI messages -->
+                                    <HBox 
+                                        visible="{path: 'chat>confidence', formatter: function(conf) { return !!conf; }}"
+                                        class="confidenceIndicator sapUiTinyMarginTop">
+                                        <Text text="Confidence: " class="sapUiTinyText"/>
+                                        <Text 
+                                            text="{path: 'chat>confidence', formatter: '.formatConfidence'}"
+                                            class="sapUiTinyText confidenceValue"/>
+                                    </HBox>
+                                </VBox>
+                            </VBox>
+                        </VBox>
+                        
+                        <!-- Typing Indicator -->
+                        <HBox 
+                            visible="{chat>/isTyping}"
+                            class="typingIndicator sapUiMediumMarginTop">
+                            <BusyIndicator size="1rem" class="sapUiTinyMarginEnd"/>
+                            <Text text="AI is thinking..." class="sapUiTinyText"/>
+                        </HBox>
+                    </VBox>
+                </ScrollContainer>
+
+                <!-- Suggested Questions Panel -->
+                <Panel 
+                    headerText="Suggested Questions"
+                    expandable="true"
+                    expanded="false"
+                    class="suggestedQuestionsPanel">
+                    <content>
+                        <VBox class="sapUiSmallMargin">
+                            <HBox wrap="Wrap" class="suggestedQuestions">
+                                <Button 
+                                    text="{chat>}"
+                                    press="onSuggestedQuestionPress"
+                                    type="Transparent"
+                                    class="suggestedQuestionButton sapUiTinyMargin"
+                                    items="{chat>/suggestedQuestions}"/>
+                            </HBox>
+                        </VBox>
+                    </content>
+                </Panel>
+
+                <!-- Quick Actions Panel -->
+                <Panel 
+                    headerText="Quick Actions"
+                    expandable="true"
+                    expanded="true"
+                    class="quickActionsPanel">
+                    <content>
+                        <HBox wrap="Wrap" class="sapUiSmallMargin">
+                            <Button 
+                                text="{chat>text}"
+                                icon="{chat>icon}"
+                                press="onQuickActionPress"
+                                data:action="{chat>action}"
+                                type="Emphasized"
+                                class="quickActionButton sapUiTinyMargin"
+                                items="{chat>/quickActions}"/>
+                        </HBox>
+                    </content>
+                </Panel>
+
+                <!-- Message Input Area -->
+                <VBox class="messageInputArea">
+                    <HBox class="sapUiMediumMargin" alignItems="End">
+                        <TextArea 
+                            id="messageInput"
+                            value="{chat>/currentMessage}"
+                            placeholder="Ask me anything about CCEP sustainability..."
+                            rows="2"
+                            width="100%"
+                            maxLength="1000"
+                            liveChange="onMessageInputLiveChange"
+                            submit="onMessageInputSubmit"
+                            class="messageTextArea sapUiMediumMarginEnd"/>
+                        
+                        <VBox>
+                            <Button 
+                                icon="sap-icon://send"
+                                press="onSendMessage"
+                                type="Emphasized"
+                                enabled="{path: 'chat>/currentMessage', formatter: function(msg) { return msg && msg.trim().length > 0; }}"
+                                class="sendButton"/>
+                            
+                            <Text 
+                                text="{path: 'chat>/currentMessage', formatter: function(msg) { return (msg ? msg.length : 0) + '/1000'; }}"
+                                class="characterCounter sapUiTinyText sapUiTinyMarginTop"/>
+                        </VBox>
+                    </HBox>
+                    
+                    <!-- Input Hints -->
+                    <HBox class="inputHints sapUiSmallMarginBegin sapUiSmallMarginEnd">
+                        <Text text="💡 Try asking about:" class="sapUiTinyText"/>
+                        <Text text="emissions, packaging, compliance, reports, forecasts" class="sapUiTinyText sapUiTinyMarginBegin"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </content>
+    </Page>
+
+    <dependents>
+        <!-- Voice Input Dialog -->
+        <Dialog id="voiceInputDialog" title="Voice Input" contentWidth="400px">
+            <content>
+                <VBox class="sapUiMediumMargin" alignItems="Center">
+                    <Icon src="sap-icon://microphone" size="3rem" class="sapUiMediumMarginBottom"/>
+                    <Text text="Listening..." class="sapUiMediumMarginBottom"/>
+                    <BusyIndicator size="2rem"/>
+                    <Text text="Speak clearly and pause when finished" class="sapUiTinyText sapUiMediumMarginTop"/>
+                </VBox>
+            </content>
+            <buttons>
+                <Button text="Stop" press="onStopVoiceInput"/>
+                <Button text="Cancel" press="onCancelVoiceInput"/>
+            </buttons>
+        </Dialog>
+
+        <!-- Chat Settings Dialog -->
+        <Dialog id="chatSettingsDialog" title="Chat Settings" contentWidth="500px">
+            <content>
+                <VBox class="sapUiMediumMargin">
+                    <Label text="Display Settings:" class="sapUiSmallMarginBottom"/>
+                    <CheckBox 
+                        text="Show timestamps"
+                        selected="{chat>/chatSettings/showTimestamps}"
+                        class="sapUiSmallMarginBottom"/>
+                    <CheckBox 
+                        text="Auto-scroll to new messages"
+                        selected="{chat>/chatSettings/autoScroll}"
+                        class="sapUiSmallMarginBottom"/>
+                    
+                    <Label text="Voice Settings:" class="sapUiMediumMarginTop sapUiSmallMarginBottom"/>
+                    <CheckBox 
+                        text="Enable voice recognition"
+                        selected="{chat>/chatSettings/enableVoice}"
+                        class="sapUiSmallMarginBottom"/>
+                    
+                    <Label text="Theme:" class="sapUiMediumMarginTop sapUiSmallMarginBottom"/>
+                    <Select selectedKey="{chat>/chatSettings/theme}">
+                        <core:Item key="light" text="Light"/>
+                        <core:Item key="dark" text="Dark"/>
+                        <core:Item key="auto" text="Auto"/>
+                    </Select>
+                </VBox>
+            </content>
+            <buttons>
+                <Button text="Save" press="onSaveChatSettings" type="Emphasized"/>
+                <Button text="Cancel" press="onCancelChatSettings"/>
+            </buttons>
+        </Dialog>
+
+        <!-- Export Options Dialog -->
+        <Dialog id="exportDialog" title="Export Chat" contentWidth="400px">
+            <content>
+                <VBox class="sapUiMediumMargin">
+                    <Label text="Export Format:" class="sapUiSmallMarginBottom"/>
+                    <RadioButtonGroup selectedIndex="0">
+                        <RadioButton text="Plain Text (.txt)"/>
+                        <RadioButton text="JSON (.json)"/>
+                        <RadioButton text="PDF (.pdf)"/>
+                    </RadioButtonGroup>
+                    
+                    <Label text="Include:" class="sapUiMediumMarginTop sapUiSmallMarginBottom"/>
+                    <CheckBox text="Timestamps" selected="true" class="sapUiSmallMarginBottom"/>
+                    <CheckBox text="Confidence scores" selected="true" class="sapUiSmallMarginBottom"/>
+                    <CheckBox text="Session metadata" selected="false"/>
+                </VBox>
+            </content>
+            <buttons>
+                <Button text="Export" press="onConfirmExport" type="Emphasized"/>
+                <Button text="Cancel" press="onCancelExport"/>
+            </buttons>
+        </Dialog>
+    </dependents>
+
+</mvc:View>

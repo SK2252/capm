@@ -1,0 +1,26 @@
+ID,kpiName,category,currentValue,targetValue,unit,period,region,trend,achievementPercentage,lastUpdated,createdAt,modifiedAt
+1,GHG Emission Reduction,Climate,19.8,30.0,%,2024-Q1,Europe,Improving,66.0,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+2,GHG Emission Reduction,Climate,18.5,30.0,%,2024-Q1,Asia Pacific,Improving,61.7,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+3,Recyclable Packaging,Packaging,94.2,100.0,%,2024-Q1,Europe,Improving,94.2,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+4,Recyclable Packaging,Packaging,89.7,100.0,%,2024-Q1,Asia Pacific,Improving,89.7,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+5,Recycled Content in PET,Packaging,48.5,50.0,%,2024-Q1,Europe,Improving,97.0,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+6,Recycled Content in PET,Packaging,26.9,50.0,%,2024-Q1,Asia Pacific,Improving,53.8,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+7,Collection Rate,Packaging,76.7,85.0,%,2024-Q1,Europe,Improving,90.2,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+8,Collection Rate,Packaging,53.0,70.0,%,2024-Q1,Asia Pacific,Improving,75.7,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+9,Water Usage Efficiency,Operations,2.1,1.8,L/L,2024-Q1,Europe,Declining,85.7,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+10,Water Usage Efficiency,Operations,2.4,1.8,L/L,2024-Q1,Asia Pacific,Declining,75.0,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+11,Renewable Energy Usage,Operations,45.2,60.0,%,2024-Q1,Europe,Improving,75.3,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+12,Renewable Energy Usage,Operations,32.8,60.0,%,2024-Q1,Asia Pacific,Improving,54.7,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+13,Supplier Sustainability Score,Supply Chain,7.2,8.5,Score,2024-Q1,Europe,Improving,84.7,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+14,Supplier Sustainability Score,Supply Chain,6.8,8.5,Score,2024-Q1,Asia Pacific,Improving,80.0,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+15,Waste Diversion Rate,Operations,87.3,95.0,%,2024-Q1,Europe,Improving,91.9,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+16,Waste Diversion Rate,Operations,82.1,95.0,%,2024-Q1,Asia Pacific,Improving,86.4,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+17,Carbon Footprint per Liter,Product,0.156,0.125,kg CO2e/L,2024-Q1,Europe,Improving,80.1,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+18,Carbon Footprint per Liter,Product,0.178,0.125,kg CO2e/L,2024-Q1,Asia Pacific,Improving,70.2,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+19,Sustainable Packaging Innovation,Innovation,12,20,Projects,2024-Q1,Global,Improving,60.0,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+20,Employee Sustainability Training,Social,78.5,90.0,%,2024-Q1,Global,Improving,87.2,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+21,Biodiversity Impact Score,Environment,6.8,8.0,Score,2024-Q1,Global,Improving,85.0,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+22,Circular Economy Index,Packaging,72.4,85.0,Index,2024-Q1,Europe,Improving,85.2,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+23,Circular Economy Index,Packaging,65.7,85.0,Index,2024-Q1,Asia Pacific,Improving,77.3,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+24,Sustainable Transport Share,Logistics,34.2,50.0,%,2024-Q1,Europe,Improving,68.4,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z
+25,Sustainable Transport Share,Logistics,28.7,50.0,%,2024-Q1,Asia Pacific,Improving,57.4,2024-03-31T23:59:59Z,2024-01-15T08:00:00Z,2024-01-15T08:00:00Z

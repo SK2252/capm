@@ -1,0 +1,230 @@
+<mvc:View
+    controllerName="ccep.sustainability.dashboard.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core">
+    
+    <Shell id="shell">
+        <App id="app">
+            <customHeader>
+                <Bar class="sapUiMediumMargin">
+                    <contentLeft>
+                        <Button 
+                            id="menuButton"
+                            icon="sap-icon://menu2" 
+                            press="onMenuPress"
+                            type="Transparent"/>
+                        <Title text="CCEP Sustainability Analytics" class="sapUiMediumMarginBegin"/>
+                    </contentLeft>
+                    <contentMiddle>
+                        <SearchField 
+                            id="globalSearch"
+                            placeholder="Ask AI about sustainability..."
+                            width="400px"
+                            search="onGlobalSearch"
+                            suggest="onSearchSuggest"/>
+                    </contentMiddle>
+                    <contentRight>
+                        <Button 
+                            id="notificationButton"
+                            icon="sap-icon://bell" 
+                            press="onNotificationPress"
+                            type="Transparent">
+                            <customData>
+                                <core:CustomData key="badge" value="3"/>
+                            </customData>
+                        </Button>
+                        <Button 
+                            id="userButton"
+                            icon="sap-icon://person-placeholder" 
+                            press="onUserPress"
+                            type="Transparent"/>
+                        <Button 
+                            id="settingsButton"
+                            icon="sap-icon://action-settings" 
+                            press="onSettingsPress"
+                            type="Transparent"/>
+                    </contentRight>
+                </Bar>
+            </customHeader>
+        </App>
+    </Shell>
+    
+    <!-- Side Navigation -->
+    <f:SideNavigation id="sideNavigation" expanded="false">
+        <f:item>
+            <f:NavigationList>
+                <f:NavigationListItem 
+                    text="Dashboard" 
+                    icon="sap-icon://business-objects-experience"
+                    select="onNavItemSelect"
+                    key="dashboard"/>
+                <f:NavigationListItem 
+                    text="Analytics" 
+                    icon="sap-icon://pie-chart"
+                    select="onNavItemSelect"
+                    key="analytics"/>
+                <f:NavigationListItem 
+                    text="Packaging" 
+                    icon="sap-icon://product"
+                    select="onNavItemSelect"
+                    key="packaging"/>
+                <f:NavigationListItem 
+                    text="Emissions" 
+                    icon="sap-icon://factory"
+                    select="onNavItemSelect"
+                    key="emissions"/>
+                <f:NavigationListItem 
+                    text="Reports" 
+                    icon="sap-icon://document"
+                    select="onNavItemSelect"
+                    key="reports"/>
+                <f:NavigationListItem 
+                    text="AI Assistant" 
+                    icon="sap-icon://robot"
+                    select="onNavItemSelect"
+                    key="chat"/>
+            </f:NavigationList>
+        </f:item>
+        <f:fixedItem>
+            <f:NavigationList>
+                <f:NavigationListItem 
+                    text="Help" 
+                    icon="sap-icon://sys-help"
+                    select="onHelpPress"/>
+                <f:NavigationListItem 
+                    text="About" 
+                    icon="sap-icon://information"
+                    select="onAboutPress"/>
+            </f:NavigationList>
+        </f:fixedItem>
+    </f:SideNavigation>
+
+    <!-- Notification Popover -->
+    <Popover id="notificationPopover" title="Notifications" placement="Bottom">
+        <content>
+            <List id="notificationList" items="{/notifications}">
+                <StandardListItem 
+                    title="{title}"
+                    description="{description}"
+                    icon="{icon}"
+                    iconInset="false"
+                    type="Active"
+                    press="onNotificationItemPress"/>
+            </List>
+        </content>
+        <footer>
+            <Toolbar>
+                <ToolbarSpacer/>
+                <Button text="View All" press="onViewAllNotifications"/>
+                <Button text="Mark All Read" press="onMarkAllRead"/>
+            </Toolbar>
+        </footer>
+    </Popover>
+
+    <!-- User Menu Popover -->
+    <Popover id="userPopover" title="User Menu" placement="Bottom">
+        <content>
+            <List>
+                <StandardListItem 
+                    title="Profile" 
+                    icon="sap-icon://person-placeholder"
+                    type="Active"
+                    press="onProfilePress"/>
+                <StandardListItem 
+                    title="Preferences" 
+                    icon="sap-icon://action-settings"
+                    type="Active"
+                    press="onPreferencesPress"/>
+                <StandardListItem 
+                    title="Switch Region" 
+                    icon="sap-icon://world"
+                    type="Active"
+                    press="onSwitchRegionPress"/>
+                <StandardListItem 
+                    title="Logout" 
+                    icon="sap-icon://log"
+                    type="Active"
+                    press="onLogoutPress"/>
+            </List>
+        </content>
+    </Popover>
+
+    <!-- Settings Dialog -->
+    <Dialog id="settingsDialog" title="Settings" contentWidth="600px">
+        <content>
+            <VBox class="sapUiMediumMargin">
+                <Label text="Theme:" class="sapUiSmallMarginBottom"/>
+                <Select id="themeSelect" selectedKey="{/userSettings/theme}">
+                    <core:Item key="sap_horizon" text="SAP Horizon"/>
+                    <core:Item key="sap_horizon_dark" text="SAP Horizon Dark"/>
+                    <core:Item key="sap_fiori_3" text="SAP Fiori 3"/>
+                    <core:Item key="sap_fiori_3_dark" text="SAP Fiori 3 Dark"/>
+                </Select>
+                
+                <Label text="Default Region:" class="sapUiMediumMarginTop sapUiSmallMarginBottom"/>
+                <Select id="regionSelect" selectedKey="{/userSettings/defaultRegion}">
+                    <core:Item key="Europe" text="Europe"/>
+                    <core:Item key="Asia Pacific" text="Asia Pacific"/>
+                    <core:Item key="Global" text="Global"/>
+                </Select>
+                
+                <Label text="Dashboard Refresh Interval:" class="sapUiMediumMarginTop sapUiSmallMarginBottom"/>
+                <Select id="refreshSelect" selectedKey="{/userSettings/refreshInterval}">
+                    <core:Item key="30" text="30 seconds"/>
+                    <core:Item key="60" text="1 minute"/>
+                    <core:Item key="300" text="5 minutes"/>
+                    <core:Item key="600" text="10 minutes"/>
+                </Select>
+                
+                <CheckBox 
+                    text="Enable AI Suggestions" 
+                    selected="{/userSettings/enableAI}"
+                    class="sapUiMediumMarginTop"/>
+                <CheckBox 
+                    text="Show Advanced Analytics" 
+                    selected="{/userSettings/showAdvanced}"
+                    class="sapUiSmallMarginTop"/>
+                <CheckBox 
+                    text="Enable Real-time Updates" 
+                    selected="{/userSettings/realTimeUpdates}"
+                    class="sapUiSmallMarginTop"/>
+            </VBox>
+        </content>
+        <buttons>
+            <Button text="Save" press="onSaveSettings" type="Emphasized"/>
+            <Button text="Cancel" press="onCancelSettings"/>
+        </buttons>
+    </Dialog>
+
+    <!-- Global Search Suggestions -->
+    <SuggestionItems id="searchSuggestions">
+        <core:Item text="GHG emission reduction progress"/>
+        <core:Item text="Packaging recyclability by region"/>
+        <core:Item text="PET recycled content trends"/>
+        <core:Item text="Collection rate improvements"/>
+        <core:Item text="Carbon footprint analysis"/>
+        <core:Item text="Supplier sustainability scores"/>
+        <core:Item text="Regulatory compliance status"/>
+        <core:Item text="Innovation pipeline updates"/>
+    </SuggestionItems>
+
+    <!-- Loading Indicator -->
+    <BusyDialog id="globalBusyDialog" title="Processing..." text="Please wait..."/>
+
+    <!-- Error Message Dialog -->
+    <Dialog id="errorDialog" title="Error" type="Message" state="Error">
+        <content>
+            <Text id="errorText" text=""/>
+        </content>
+        <buttons>
+            <Button text="OK" press="onErrorDialogClose"/>
+        </buttons>
+    </Dialog>
+
+    <!-- Success Message Toast -->
+    <MessageToast id="successToast"/>
+
+</mvc:View>

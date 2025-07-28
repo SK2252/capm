@@ -1,0 +1,162 @@
+CCEP Packaging Standards and Specifications
+
+PACKAGING MATERIAL STANDARDS
+
+PET Bottles:
+- Target: 50% recycled content by 2025
+- Current Europe average: 48.5% recycled content
+- Current Asia Pacific average: 26.9% recycled content
+- Minimum wall thickness: 0.28mm for 500ml bottles
+- Color restrictions: Clear and light blue preferred for recyclability
+- Label requirements: Shrink sleeves must be easily removable
+- Closure specifications: Tethered caps mandatory in EU from 2024
+
+Aluminum Cans:
+- 100% recyclable material
+- Minimum 70% recycled content
+- Standard sizes: 150ml, 250ml, 330ml, 500ml
+- Coating requirements: BPA-free interior coating
+- Printing: Water-based inks preferred
+- End specifications: Stay-on-tab design
+
+Glass Bottles:
+- 100% recyclable material
+- Target: 50% recycled content
+- Lightweight design: Reduce weight by 15% by 2025
+- Color specifications: Clear, amber, green acceptable
+- Closure: Aluminum caps with liner-free design preferred
+- Embossing: Minimize to improve recyclability
+
+Secondary Packaging:
+- Cardboard: 100% recycled content or FSC certified
+- Shrink wrap: Recyclable PE film only
+- Multipacks: Cardboard preferred over plastic rings
+- Transport packaging: Reusable crates where possible
+
+RECYCLABILITY REQUIREMENTS
+
+Design for Recycling Principles:
+- Material compatibility with existing recycling streams
+- Easy separation of different materials
+- Minimal use of adhesives and non-recyclable components
+- Clear material identification and sorting codes
+- Avoid problematic materials (PVC, PS, dark colors)
+
+Testing and Certification:
+- APR (Association of Plastic Recyclers) recognition
+- EPBP (European PET Bottle Platform) approval
+- RecyClass certification for plastic packaging
+- Third-party recyclability assessments
+- Regular testing with recycling facilities
+
+COLLECTION RATE OPTIMIZATION
+
+Europe Collection Strategy:
+- Support for Deposit Return Systems (DRS)
+- Partnership with Extended Producer Responsibility schemes
+- Investment in collection infrastructure
+- Consumer education campaigns
+- Digital tracking and traceability systems
+
+Asia Pacific Collection Strategy:
+- Collaboration with waste management companies
+- Support for informal collection networks
+- Investment in sorting and processing facilities
+- Government partnership programs
+- Community-based collection initiatives
+
+SUSTAINABLE SOURCING STANDARDS
+
+Raw Material Requirements:
+- Recycled PET: Food-grade quality, clear color preferred
+- Virgin PET: Bio-based content where available
+- Aluminum: Certified sustainable sourcing
+- Glass: Local sourcing to reduce transport emissions
+- Cardboard: FSC or PEFC certified fiber
+
+Supplier Standards:
+- ISO 14001 environmental management certification
+- Carbon footprint reporting and reduction targets
+- Water stewardship programs
+- Waste reduction and circular economy practices
+- Social responsibility and labor standards compliance
+
+INNOVATION AND DEVELOPMENT
+
+Emerging Technologies:
+- Chemical recycling for PET bottles
+- Bio-based packaging materials
+- Barrier coatings for enhanced recyclability
+- Smart packaging with digital features
+- Refillable and reusable systems
+
+Research Partnerships:
+- Universities and research institutions
+- Technology providers and startups
+- Industry consortiums and initiatives
+- Government-funded research programs
+- The Coca-Cola Company global R&D
+
+QUALITY AND SAFETY STANDARDS
+
+Food Safety Requirements:
+- FDA and EU food contact regulations compliance
+- Migration testing for all packaging materials
+- Microbiological safety assessments
+- Shelf-life validation studies
+- Traceability and recall procedures
+
+Performance Standards:
+- Barrier properties for product protection
+- Mechanical strength and durability
+- Temperature resistance specifications
+- UV protection requirements
+- Tamper-evident features
+
+REGIONAL SPECIFICATIONS
+
+Europe Specific:
+- Single-Use Plastics Directive compliance
+- Packaging and Packaging Waste Directive requirements
+- REACH regulation compliance
+- National packaging laws and regulations
+- Deposit return system compatibility
+
+Asia Pacific Specific:
+- Local recycling infrastructure compatibility
+- Climate-specific performance requirements
+- Cultural preferences and market needs
+- Regulatory compliance by country
+- Supply chain optimization for regional sourcing
+
+MEASUREMENT AND MONITORING
+
+Key Performance Indicators:
+- Recyclable packaging percentage
+- Recycled content percentage by material
+- Collection rate by region and package type
+- Carbon footprint per package
+- Cost per package and total cost impact
+
+Testing Protocols:
+- Regular recyclability assessments
+- Consumer acceptance testing
+- Supply chain performance monitoring
+- Environmental impact assessments
+- Regulatory compliance audits
+
+CONTINUOUS IMPROVEMENT
+
+Review Process:
+- Annual standards review and updates
+- Stakeholder feedback integration
+- Technology advancement incorporation
+- Regulatory change adaptation
+- Best practice sharing across regions
+
+Innovation Pipeline:
+- Next-generation packaging materials
+- Advanced recycling technologies
+- Digital packaging solutions
+- Sustainable design methodologies
+- Circular economy business models

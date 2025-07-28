@@ -1,0 +1,197 @@
+{
+  "_version": "1.58.0",
+  "sap.app": {
+    "id": "ccep.sustainability.dashboard",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.11.4",
+      "toolsId": "b0b8e148-8f0b-4b8e-9f8a-8c8e8f8e8f8e"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sustainability/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.120.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.commons": {},
+        "sap.viz": {},
+        "sap.suite.ui.microchart": {},
+        "sap.ushell": {
+          "lazy": true
+        }
+      }
+    },
+    "models": {
+      "i18n": {
+        "dataSource": "i18n",
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "ccep.sustainability.dashboard.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "type": "sap.ui.model.odata.v4.ODataModel",
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "path": "ccep.sustainability.dashboard.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteDashboard",
+          "pattern": ":?query:",
+          "target": [
+            "TargetDashboard"
+          ]
+        },
+        {
+          "name": "RouteAnalytics",
+          "pattern": "analytics:?query:",
+          "target": [
+            "TargetAnalytics"
+          ]
+        },
+        {
+          "name": "RoutePackaging",
+          "pattern": "packaging:?query:",
+          "target": [
+            "TargetPackaging"
+          ]
+        },
+        {
+          "name": "RouteEmissions",
+          "pattern": "emissions:?query:",
+          "target": [
+            "TargetEmissions"
+          ]
+        },
+        {
+          "name": "RouteReports",
+          "pattern": "reports:?query:",
+          "target": [
+            "TargetReports"
+          ]
+        },
+        {
+          "name": "RouteAIChat",
+          "pattern": "chat:?query:",
+          "target": [
+            "TargetAIChat"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetDashboard": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Dashboard",
+          "viewName": "Dashboard"
+        },
+        "TargetAnalytics": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Analytics",
+          "viewName": "Analytics"
+        },
+        "TargetPackaging": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Packaging",
+          "viewName": "Packaging"
+        },
+        "TargetEmissions": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Emissions",
+          "viewName": "Emissions"
+        },
+        "TargetReports": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Reports",
+          "viewName": "Reports"
+        },
+        "TargetAIChat": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "AIChat",
+          "viewName": "AIChat"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "ccep.sustainability.dashboard.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "ccep.sustainability.dashboard"
+  }
+}

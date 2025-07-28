@@ -1,0 +1,106 @@
+{
+  "xsappname": "ccep-sustainability",
+  "tenant-mode": "dedicated",
+  "description": "Security configuration for CCEP Sustainability Analytics",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.SustainabilityAnalyst",
+      "description": "Sustainability Analyst role"
+    },
+    {
+      "name": "$XSAPPNAME.SustainabilityManager",
+      "description": "Sustainability Manager role"
+    },
+    {
+      "name": "$XSAPPNAME.DataScientist",
+      "description": "Data Scientist role"
+    },
+    {
+      "name": "$XSAPPNAME.ExecutiveViewer",
+      "description": "Executive Viewer role"
+    },
+    {
+      "name": "$XSAPPNAME.SystemAdmin",
+      "description": "System Administrator role"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "Region",
+      "description": "User's regional access",
+      "valueType": "string"
+    },
+    {
+      "name": "Department",
+      "description": "User's department",
+      "valueType": "string"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "SustainabilityAnalyst",
+      "description": "Sustainability Analyst Template",
+      "scope-references": [
+        "$XSAPPNAME.SustainabilityAnalyst"
+      ],
+      "attribute-references": [
+        "Region",
+        "Department"
+      ]
+    },
+    {
+      "name": "SustainabilityManager",
+      "description": "Sustainability Manager Template",
+      "scope-references": [
+        "$XSAPPNAME.SustainabilityAnalyst",
+        "$XSAPPNAME.SustainabilityManager"
+      ],
+      "attribute-references": [
+        "Region",
+        "Department"
+      ]
+    },
+    {
+      "name": "DataScientist",
+      "description": "Data Scientist Template",
+      "scope-references": [
+        "$XSAPPNAME.SustainabilityAnalyst",
+        "$XSAPPNAME.DataScientist"
+      ],
+      "attribute-references": [
+        "Region",
+        "Department"
+      ]
+    },
+    {
+      "name": "ExecutiveViewer",
+      "description": "Executive Viewer Template",
+      "scope-references": [
+        "$XSAPPNAME.ExecutiveViewer"
+      ]
+    },
+    {
+      "name": "SystemAdmin",
+      "description": "System Administrator Template",
+      "scope-references": [
+        "$XSAPPNAME.SustainabilityAnalyst",
+        "$XSAPPNAME.SustainabilityManager",
+        "$XSAPPNAME.DataScientist",
+        "$XSAPPNAME.ExecutiveViewer",
+        "$XSAPPNAME.SystemAdmin"
+      ],
+      "attribute-references": [
+        "Region",
+        "Department"
+      ]
+    }
+  ],
+  "oauth2-configuration": {
+    "token-validity": 7200,
+    "refresh-token-validity": 604800,
+    "redirect-uris": [
+      "http://localhost:4004/**",
+      "https://*.cfapps.sap.hana.ondemand.com/**"
+    ]
+  }
+}
