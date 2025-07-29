@@ -8,7 +8,7 @@ require('dotenv').config();
 const config = {
   // Application Settings
   app: {
-    name: process.env.APP_NAME || 'ccep-sustainability-capm',
+    name: process.env.APP_NAME || 'ccep',
     version: '1.0.0',
     environment: process.env.NODE_ENV || 'development',
     port: parseInt(process.env.PORT) || 4004,

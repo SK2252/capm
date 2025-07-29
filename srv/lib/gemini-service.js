@@ -17,18 +17,19 @@ const logger = winston.createLogger({
 
 class GeminiService {
   constructor() {
-    if (!config.gemini.apiKey) {
+    const apiKey = config?.gemini?.apiKey || process.env.GEMINI_API_KEY;
+    if (!apiKey) {
       throw new Error('GEMINI_API_KEY is required');
     }
 
-    this.genAI = new GoogleGenerativeAI(config.gemini.apiKey);
-    this.model = this.genAI.getGenerativeModel({ 
-      model: config.gemini.model,
+    this.genAI = new GoogleGenerativeAI(apiKey);
+    this.model = this.genAI.getGenerativeModel({
+      model: 'gemini-1.5-flash', // Updated to use Gemini 1.5 Flash
       generationConfig: {
-        temperature: config.gemini.temperature,
+        temperature: 0.3, // Lower temperature for more consistent results
         topK: config.gemini.topK,
         topP: config.gemini.topP,
-        maxOutputTokens: config.gemini.maxTokens,
+        maxOutputTokens: 8192, // Increased token limit for Flash model
       }
     });
 

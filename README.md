@@ -39,8 +39,8 @@ This platform helps CCEP achieve their sustainability goals:
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd ccep-sustainability-capm
+   git clone https://github.com/SK2252/capm.git
+   cd ccep
    ```
 
 2. **Install dependencies**
@@ -108,7 +108,7 @@ npm run dev
 ## 📁 Project Structure
 
 ```
-ccep-sustainability-capm/
+ccep/
 ├── srv/                    # CAP services
 │   ├── sustainability-service.cds    # Service definitions
 │   ├── sustainability-service.js     # Service implementation

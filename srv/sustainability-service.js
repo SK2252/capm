@@ -489,6 +489,140 @@ class SustainabilityServiceHandler {
       throw error;
     }
   }
+
+  // ===== MACHINE LEARNING METHODS =====
+
+  async predictEmissionsML(historicalData, scenario, timeHorizon) {
+    try {
+      if (!this.initialized) await this.init();
+
+      const parsedHistoricalData = typeof historicalData === 'string'
+        ? JSON.parse(historicalData)
+        : historicalData;
+
+      const scenarioObj = {
+        name: scenario,
+        timeHorizon,
+        externalFactors: 'Market conditions and regulatory changes'
+      };
+
+      const result = await this.genAI.predictEmissionsML(parsedHistoricalData, scenarioObj, timeHorizon);
+
+      return {
+        prediction: JSON.stringify(result.prediction),
+        confidence: result.confidence,
+        methodology: result.methodology,
+        features_used: result.features_used,
+        model_performance: JSON.stringify(result.model_performance),
+        uncertainty_bounds: JSON.stringify(result.uncertainty_bounds),
+        timestamp: new Date()
+      };
+    } catch (error) {
+      logger.error('Error in predictEmissionsML function:', error);
+      throw error;
+    }
+  }
+
+  async optimizePackagingML(currentPackaging, constraints, objectives) {
+    try {
+      if (!this.initialized) await this.init();
+
+      const parsedPackaging = typeof currentPackaging === 'string'
+        ? JSON.parse(currentPackaging)
+        : currentPackaging;
+      const parsedConstraints = typeof constraints === 'string'
+        ? JSON.parse(constraints)
+        : constraints;
+      const parsedObjectives = typeof objectives === 'string'
+        ? JSON.parse(objectives)
+        : objectives;
+
+      const result = await this.genAI.optimizePackagingML(parsedPackaging, parsedConstraints, parsedObjectives);
+
+      return {
+        optimized_materials: JSON.stringify(result.optimized_materials),
+        trade_offs: JSON.stringify(result.trade_offs),
+        performance_improvement: JSON.stringify(result.performance_improvement),
+        confidence: result.confidence,
+        pareto_frontier: JSON.stringify(result.pareto_frontier),
+        sensitivity_analysis: JSON.stringify(result.sensitivity_analysis),
+        timestamp: new Date()
+      };
+    } catch (error) {
+      logger.error('Error in optimizePackagingML function:', error);
+      throw error;
+    }
+  }
+
+  async assessSupplyChainRiskML(supplyChainData, riskFactors) {
+    try {
+      if (!this.initialized) await this.init();
+
+      const parsedSupplyChainData = typeof supplyChainData === 'string'
+        ? JSON.parse(supplyChainData)
+        : supplyChainData;
+      const parsedRiskFactors = typeof riskFactors === 'string'
+        ? JSON.parse(riskFactors)
+        : riskFactors;
+
+      const result = await this.genAI.assessSupplyChainRiskML(parsedSupplyChainData, parsedRiskFactors);
+
+      return {
+        overall_risk_score: result.overall_risk_score,
+        risk_categories: JSON.stringify(result.risk_categories),
+        anomalies_detected: JSON.stringify(result.anomalies_detected),
+        mitigation_strategies: JSON.stringify(result.mitigation_strategies),
+        confidence: result.confidence,
+        risk_timeline: JSON.stringify(result.risk_timeline),
+        monitoring_recommendations: JSON.stringify(result.monitoring_recommendations),
+        timestamp: new Date()
+      };
+    } catch (error) {
+      logger.error('Error in assessSupplyChainRiskML function:', error);
+      throw error;
+    }
+  }
+
+  async classifyRegulatoryComplianceML(regulationText, region, context) {
+    try {
+      if (!this.initialized) await this.init();
+
+      const parsedContext = typeof context === 'string'
+        ? JSON.parse(context)
+        : context;
+
+      const result = await this.genAI.classifyRegulatoryComplianceML(regulationText, region, parsedContext);
+
+      return {
+        compliance_status: result.compliance_status,
+        compliance_score: result.compliance_score,
+        risk_level: result.risk_level,
+        required_actions: JSON.stringify(result.required_actions),
+        deadline_analysis: JSON.stringify(result.deadline_analysis),
+        confidence: result.confidence,
+        regulatory_categories: JSON.stringify(result.regulatory_categories),
+        impact_assessment: JSON.stringify(result.impact_assessment),
+        timestamp: new Date()
+      };
+    } catch (error) {
+      logger.error('Error in classifyRegulatoryComplianceML function:', error);
+      throw error;
+    }
+  }
+
+  async getMLServiceStatus() {
+    try {
+      if (!this.initialized) await this.init();
+      return await this.genAI.getMLServiceStatus();
+    } catch (error) {
+      logger.error('Error getting ML service status:', error);
+      return {
+        status: 'error',
+        error: error.message,
+        lastChecked: new Date()
+      };
+    }
+  }
 }
 
 // Service Implementation
@@ -510,6 +644,13 @@ module.exports = cds.service.impl(async function() {
   this.on('getRecommendations', handler.getRecommendations.bind(handler));
   this.on('performScenarioAnalysis', handler.performScenarioAnalysis.bind(handler));
   this.on('getDashboardData', handler.getDashboardData.bind(handler));
+
+  // ML Function implementations
+  this.on('predictEmissionsML', handler.predictEmissionsML.bind(handler));
+  this.on('optimizePackagingML', handler.optimizePackagingML.bind(handler));
+  this.on('assessSupplyChainRiskML', handler.assessSupplyChainRiskML.bind(handler));
+  this.on('classifyRegulatoryComplianceML', handler.classifyRegulatoryComplianceML.bind(handler));
+  this.on('getMLServiceStatus', handler.getMLServiceStatus.bind(handler));
 
   logger.info('Sustainability Service initialized successfully');
 });

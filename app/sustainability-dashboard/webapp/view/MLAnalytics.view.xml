@@ -1,0 +1,155 @@
+<mvc:View
+    controllerName="ccep.sustainability.dashboard.controller.MLAnalytics"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    
+    <Page title="ML Analytics - Powered by Gemini 1.5 Flash" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <ScrollContainer height="100%" width="100%" horizontal="false" vertical="true">
+                
+                <!-- ML Service Status Card -->
+                <Panel headerText="ML Service Status" class="sapUiMediumMargin">
+                    <content>
+                        <VBox class="sapUiMediumMargin">
+                            <HBox alignItems="Center" class="sapUiSmallMarginBottom">
+                                <core:Icon src="sap-icon://status-positive" color="green" size="1rem" class="sapUiTinyMarginEnd"/>
+                                <Text text="Status: {ml>/mlServiceStatus/status}" class="sapUiMediumMarginEnd"/>
+                                <Text text="Model: {ml>/mlServiceStatus/model}" class="sapUiMediumMarginEnd"/>
+                                <Button text="Refresh" press="onRefreshMLStatus" type="Transparent"/>
+                            </HBox>
+                            <Text text="Available ML Models: {ml>/mlServiceStatus/ml_models_available}" class="sapUiSmallMarginBottom"/>
+                            <Text text="Last Checked: {ml>/mlServiceStatus/lastChecked}"/>
+                        </VBox>
+                    </content>
+                </Panel>
+
+                <!-- ML Analysis Controls -->
+                <Panel headerText="Machine Learning Analysis" class="sapUiMediumMargin">
+                    <content>
+                        <VBox class="sapUiMediumMargin">
+                            
+                            <!-- Emission Prediction -->
+                            <VBox class="sapUiMediumMarginBottom">
+                                <Label text="Emission Prediction Analysis" class="sapUiSmallMarginBottom"/>
+                                <Text text="Advanced time series forecasting for GHG emissions using historical data and scenario planning." class="sapUiSmallMarginBottom"/>
+                                <Button 
+                                    text="Run Emission Prediction" 
+                                    press="onRunEmissionPrediction" 
+                                    type="Emphasized"
+                                    enabled="{= !${ml>/isLoading}}"
+                                    icon="sap-icon://trend-up"/>
+                            </VBox>
+
+                            <!-- Packaging Optimization -->
+                            <VBox class="sapUiMediumMarginBottom">
+                                <Label text="Packaging Material Optimization" class="sapUiSmallMarginBottom"/>
+                                <Text text="Multi-objective optimization for packaging materials considering cost, recyclability, and environmental impact." class="sapUiSmallMarginBottom"/>
+                                <Button 
+                                    text="Run Packaging Optimization" 
+                                    press="onRunPackagingOptimization" 
+                                    type="Emphasized"
+                                    enabled="{= !${ml>/isLoading}}"
+                                    icon="sap-icon://product"/>
+                            </VBox>
+
+                            <!-- Supply Chain Risk Assessment -->
+                            <VBox class="sapUiMediumMarginBottom">
+                                <Label text="Supply Chain Risk Assessment" class="sapUiSmallMarginBottom"/>
+                                <Text text="Anomaly detection and risk scoring for supply chain sustainability and reliability." class="sapUiSmallMarginBottom"/>
+                                <Button 
+                                    text="Run Supply Chain Risk Assessment" 
+                                    press="onRunSupplyChainRisk" 
+                                    type="Emphasized"
+                                    enabled="{= !${ml>/isLoading}}"
+                                    icon="sap-icon://chain-link"/>
+                            </VBox>
+
+                            <!-- Regulatory Compliance Classification -->
+                            <VBox class="sapUiMediumMarginBottom">
+                                <Label text="Regulatory Compliance Classification" class="sapUiSmallMarginBottom"/>
+                                <Text text="Text classification and compliance scoring for regulatory requirements and deadlines." class="sapUiSmallMarginBottom"/>
+                                <Button 
+                                    text="Run Regulatory Compliance Analysis" 
+                                    press="onRunRegulatoryCompliance" 
+                                    type="Emphasized"
+                                    enabled="{= !${ml>/isLoading}}"
+                                    icon="sap-icon://document-text"/>
+                            </VBox>
+
+                        </VBox>
+                    </content>
+                </Panel>
+
+                <!-- Loading Indicator -->
+                <Panel headerText="Analysis Status" class="sapUiMediumMargin" visible="{ml>/isLoading}">
+                    <content>
+                        <VBox alignItems="Center" class="sapUiMediumMargin">
+                            <BusyIndicator size="2rem" class="sapUiMediumMarginBottom"/>
+                            <Text text="Running ML analysis with Gemini 1.5 Flash..." class="sapUiMediumMarginBottom"/>
+                            <Text text="This may take a few moments..." class="sapUiSmallText"/>
+                        </VBox>
+                    </content>
+                </Panel>
+
+                <!-- Results Summary -->
+                <Panel headerText="Recent Analysis Results" class="sapUiMediumMargin" visible="{= !!${ml>/results}}">
+                    <content>
+                        <VBox class="sapUiMediumMargin">
+                            
+                            <!-- Emission Prediction Results -->
+                            <VBox class="sapUiSmallMarginBottom" visible="{= !!${ml>/results/emissionPrediction}}">
+                                <Label text="Emission Prediction Results:" class="sapUiSmallMarginBottom"/>
+                                <Text text="Methodology: {ml>/results/emissionPrediction/methodology}"/>
+                                <Text text="Confidence: {path: 'ml>/results/emissionPrediction/confidence', formatter: '.formatPercentage'}"/>
+                                <Text text="Completed: {ml>/results/emissionPrediction/timestamp}"/>
+                            </VBox>
+
+                            <!-- Packaging Optimization Results -->
+                            <VBox class="sapUiSmallMarginBottom" visible="{= !!${ml>/results/packagingOptimization}}">
+                                <Label text="Packaging Optimization Results:" class="sapUiSmallMarginBottom"/>
+                                <Text text="Confidence: {path: 'ml>/results/packagingOptimization/confidence', formatter: '.formatPercentage'}"/>
+                                <Text text="Completed: {ml>/results/packagingOptimization/timestamp}"/>
+                            </VBox>
+
+                            <!-- Supply Chain Risk Results -->
+                            <VBox class="sapUiSmallMarginBottom" visible="{= !!${ml>/results/supplyChainRisk}}">
+                                <Label text="Supply Chain Risk Assessment Results:" class="sapUiSmallMarginBottom"/>
+                                <Text text="Overall Risk Score: {ml>/results/supplyChainRisk/overall_risk_score}"/>
+                                <Text text="Confidence: {path: 'ml>/results/supplyChainRisk/confidence', formatter: '.formatPercentage'}"/>
+                                <Text text="Completed: {ml>/results/supplyChainRisk/timestamp}"/>
+                            </VBox>
+
+                            <!-- Regulatory Compliance Results -->
+                            <VBox class="sapUiSmallMarginBottom" visible="{= !!${ml>/results/regulatoryCompliance}}">
+                                <Label text="Regulatory Compliance Classification Results:" class="sapUiSmallMarginBottom"/>
+                                <Text text="Compliance Status: {ml>/results/regulatoryCompliance/compliance_status}"/>
+                                <Text text="Compliance Score: {ml>/results/regulatoryCompliance/compliance_score}"/>
+                                <Text text="Risk Level: {ml>/results/regulatoryCompliance/risk_level}"/>
+                                <Text text="Confidence: {path: 'ml>/results/regulatoryCompliance/confidence', formatter: '.formatPercentage'}"/>
+                                <Text text="Completed: {ml>/results/regulatoryCompliance/timestamp}"/>
+                            </VBox>
+
+                        </VBox>
+                    </content>
+                </Panel>
+
+                <!-- ML Model Information -->
+                <Panel headerText="About Gemini 1.5 Flash ML Integration" class="sapUiMediumMargin">
+                    <content>
+                        <VBox class="sapUiMediumMargin">
+                            <Text text="This ML Analytics module leverages Google's Gemini 1.5 Flash model for advanced sustainability analytics:" class="sapUiSmallMarginBottom"/>
+                            <Text text="• Time Series Forecasting for emission predictions" class="sapUiSmallMarginBottom"/>
+                            <Text text="• Multi-Objective Optimization for packaging materials" class="sapUiSmallMarginBottom"/>
+                            <Text text="• Anomaly Detection for supply chain risk assessment" class="sapUiSmallMarginBottom"/>
+                            <Text text="• Text Classification for regulatory compliance" class="sapUiSmallMarginBottom"/>
+                            <Text text="• Feature Engineering for enhanced model performance" class="sapUiSmallMarginBottom"/>
+                            <Text text="• Real-time model evaluation and performance monitoring" class="sapUiSmallMarginBottom"/>
+                        </VBox>
+                    </content>
+                </Panel>
+
+            </ScrollContainer>
+        </content>
+    </Page>
+</mvc:View>

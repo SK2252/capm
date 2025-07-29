@@ -96,41 +96,28 @@ sap.ui.define([
         },
 
         // Navigation Events
-        onMenuPress: function () {
-            const oSideNavigation = this.byId("sideNavigation");
-            const bExpanded = oSideNavigation.getExpanded();
-            oSideNavigation.setExpanded(!bExpanded);
+        onNavToDashboard: function () {
+            const oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo("RouteDashboard");
         },
 
-        onNavItemSelect: function (oEvent) {
-            const sKey = oEvent.getParameter("item").getKey();
+        onNavToAnalytics: function () {
             const oRouter = this.getOwnerComponent().getRouter();
-            
-            switch (sKey) {
-                case "dashboard":
-                    oRouter.navTo("RouteDashboard");
-                    break;
-                case "analytics":
-                    oRouter.navTo("RouteAnalytics");
-                    break;
-                case "packaging":
-                    oRouter.navTo("RoutePackaging");
-                    break;
-                case "emissions":
-                    oRouter.navTo("RouteEmissions");
-                    break;
-                case "reports":
-                    oRouter.navTo("RouteReports");
-                    break;
-                case "chat":
-                    oRouter.navTo("RouteAIChat");
-                    break;
-            }
-            
-            // Collapse side navigation on mobile
-            if (window.innerWidth < 768) {
-                this.byId("sideNavigation").setExpanded(false);
-            }
+            oRouter.navTo("RouteAnalytics");
+        },
+
+        onNavToChat: function () {
+            const oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo("RouteAIChat");
+        },
+
+        onNavToML: function () {
+            const oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo("RouteMLAnalytics");
+        },
+
+        onGenerateReport: function () {
+            sap.m.MessageToast.show("Generating sustainability report...");
         },
 
         // Search Events

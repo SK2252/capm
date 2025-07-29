@@ -1,10 +1,12 @@
 {
-  "name": "ccep-sustainability-capm",
+  "name": "ccep",
   "version": "1.0.0",
   "description": "CCEP Sustainability Analytics with SAP CAP, Agentic RAG, and Gen AI",
   "main": "server.js",
   "scripts": {
-    "start": "cds-serve",
+    "start": "node server.js",
+    "start:cds": "cds-serve",
+    "start:dev": "node scripts/start-project.js",
     "dev": "cds watch --with-mocks",
     "watch": "cds watch",
     "build": "cds build",
@@ -16,6 +18,7 @@
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
     "test:ai": "jest test/unit/agentic-rag.test.js test/unit/gen-ai-service.test.js --timeout=15000",
+    "test:ml": "node test/ml-service-test.js",
     "deploy": "cds deploy",
     "deploy:cf": "cf push",
     "setup": "npm run deploy && npm run seed",

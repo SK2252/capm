@@ -303,6 +303,103 @@ service SustainabilityService @(path: '/sustainability') {
     recommendations: array of String;
   };
 
+  // ===== MACHINE LEARNING FUNCTIONS =====
+
+  function predictEmissionsML(
+    historicalData: LargeString,
+    scenario: String,
+    timeHorizon: String
+  ) returns {
+    prediction: LargeString;
+    confidence: Decimal;
+    methodology: String;
+    features_used: array of String;
+    model_performance: LargeString;
+    uncertainty_bounds: LargeString;
+    timestamp: DateTime;
+  };
+
+  function optimizePackagingML(
+    currentPackaging: LargeString,
+    constraints: LargeString,
+    objectives: LargeString
+  ) returns {
+    optimized_materials: LargeString;
+    trade_offs: LargeString;
+    performance_improvement: LargeString;
+    confidence: Decimal;
+    pareto_frontier: LargeString;
+    sensitivity_analysis: LargeString;
+    timestamp: DateTime;
+  };
+
+  function assessSupplyChainRiskML(
+    supplyChainData: LargeString,
+    riskFactors: LargeString
+  ) returns {
+    overall_risk_score: Decimal;
+    risk_categories: LargeString;
+    anomalies_detected: LargeString;
+    mitigation_strategies: LargeString;
+    confidence: Decimal;
+    risk_timeline: LargeString;
+    monitoring_recommendations: LargeString;
+    timestamp: DateTime;
+  };
+
+  function classifyRegulatoryComplianceML(
+    regulationText: LargeString,
+    region: String,
+    context: LargeString
+  ) returns {
+    compliance_status: String;
+    compliance_score: Decimal;
+    risk_level: String;
+    required_actions: LargeString;
+    deadline_analysis: LargeString;
+    confidence: Decimal;
+    regulatory_categories: LargeString;
+    impact_assessment: LargeString;
+    timestamp: DateTime;
+  };
+
+  function engineerFeaturesML(
+    rawData: LargeString,
+    featureType: String,
+    targetVariable: String
+  ) returns {
+    engineered_features: LargeString;
+    feature_importance: LargeString;
+    feature_correlations: LargeString;
+    data_quality_metrics: LargeString;
+    preprocessing_steps: LargeString;
+    timestamp: DateTime;
+  };
+
+  function evaluateModelPerformanceML(
+    modelType: String,
+    predictions: LargeString,
+    actualValues: LargeString,
+    metrics: array of String
+  ) returns {
+    performance_metrics: LargeString;
+    model_accuracy: Decimal;
+    confusion_matrix: LargeString;
+    feature_importance: LargeString;
+    model_insights: LargeString;
+    recommendations: LargeString;
+    timestamp: DateTime;
+  };
+
+  function getMLServiceStatus() returns {
+    status: String;
+    provider: String;
+    model: String;
+    ml_models_available: array of String;
+    feature_engineering_types: array of String;
+    lastChecked: DateTime;
+  };
+
   // Health Check and Status
   function getSystemHealth() returns {
     status: String;

@@ -44,7 +44,7 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": true,
+    "flexEnabled": false,
     "dependencies": {
       "minUI5Version": "1.120.0",
       "libs": {
@@ -136,6 +136,13 @@
           "target": [
             "TargetAIChat"
           ]
+        },
+        {
+          "name": "RouteMLAnalytics",
+          "pattern": "ml:?query:",
+          "target": [
+            "TargetMLAnalytics"
+          ]
         }
       ],
       "targets": {
@@ -180,6 +187,13 @@
           "clearControlAggregation": false,
           "viewId": "AIChat",
           "viewName": "AIChat"
+        },
+        "TargetMLAnalytics": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "MLAnalytics",
+          "viewName": "MLAnalytics"
         }
       }
     },

@@ -1,6 +1,7 @@
 const winston = require('winston');
 const { RateLimiterMemory } = require('rate-limiter-flexible');
 const GeminiService = require('./gemini-service');
+const MLService = require('./ml-service');
 
 // Configure logger
 const logger = winston.createLogger({
@@ -19,6 +20,9 @@ class GenAIService {
   constructor() {
     // Initialize Gemini service
     this.geminiService = new GeminiService();
+
+    // Initialize ML service with Gemini 1.5 Flash
+    this.mlService = new MLService();
 
     // Set Gemini as the only provider
     this.preferredProvider = 'gemini';
@@ -298,6 +302,79 @@ class GenAIService {
     } catch (error) {
       logger.error('Error performing scenario analysis:', error);
       throw error;
+    }
+  }
+
+  // ===== MACHINE LEARNING METHODS =====
+
+  /**
+   * Advanced Emission Prediction using ML
+   */
+  async predictEmissionsML(historicalData, scenario, timeHorizon = '2030') {
+    try {
+      const result = await this.mlService.predictEmissionsAdvanced(historicalData, scenario, timeHorizon);
+      logger.info(`Generated ML-based emission prediction for scenario: ${scenario.name}`);
+      return result;
+    } catch (error) {
+      logger.error('Error in ML emission prediction:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Packaging Material Optimization using ML
+   */
+  async optimizePackagingML(currentPackaging, constraints, objectives) {
+    try {
+      const result = await this.mlService.optimizePackagingMaterials(currentPackaging, constraints, objectives);
+      logger.info('Generated ML-based packaging optimization');
+      return result;
+    } catch (error) {
+      logger.error('Error in ML packaging optimization:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Supply Chain Risk Assessment using ML
+   */
+  async assessSupplyChainRiskML(supplyChainData, riskFactors) {
+    try {
+      const result = await this.mlService.assessSupplyChainRisk(supplyChainData, riskFactors);
+      logger.info('Generated ML-based supply chain risk assessment');
+      return result;
+    } catch (error) {
+      logger.error('Error in ML supply chain risk assessment:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Regulatory Compliance Classification using ML
+   */
+  async classifyRegulatoryComplianceML(regulationText, region, context) {
+    try {
+      const result = await this.mlService.classifyRegulatoryCompliance(regulationText, region, context);
+      logger.info(`Generated ML-based regulatory compliance classification for region: ${region}`);
+      return result;
+    } catch (error) {
+      logger.error('Error in ML regulatory compliance classification:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get ML Service Status
+   */
+  async getMLServiceStatus() {
+    try {
+      return await this.mlService.getMLServiceStatus();
+    } catch (error) {
+      return {
+        status: 'error',
+        error: error.message,
+        lastChecked: new Date().toISOString()
+      };
     }
   }
 
