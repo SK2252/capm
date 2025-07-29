@@ -51,6 +51,7 @@
     "@cap-js/sqlite": "^1.7.3",
     "@google/generative-ai": "^0.24.1",
     "@sap/cds": "^8.0.0",
+    "@sap/hana-client": "^2.25.29",
     "@sap/xssec": "^4.0.0",
     "axios": "^1.7.0",
     "bcryptjs": "^2.4.3",
